@@ -1,7 +1,7 @@
 import pytest
 from rdkit import Chem
 from rdkit.Chem import AllChem
-from nd_sim import similarity
+from hsr import similarity
 
 # Helper function to generate 3D conformer for a molecule
 def generate_3d_coords(mol):

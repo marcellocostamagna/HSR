@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 from rdkit import Chem
 from rdkit.Chem import AllChem
-from nd_sim import fingerprint
+from hsr import fingerprint
 
 def test_generate_reference_points():
     dimensionality = 6

@@ -3,7 +3,7 @@ import os
 import numpy as np
 import tempfile
 from rdkit import Chem
-from nd_sim import *
+from hsr import *
 import pytest
 
 # Create fixture for benzene molecule

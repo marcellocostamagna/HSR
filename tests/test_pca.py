@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from nd_sim.pca_transform import *
+from hsr.pca_transform import *
 
 def generate_multivariate_not_rotated_data(n_dim, variances):
     mean = np.zeros(n_dim)

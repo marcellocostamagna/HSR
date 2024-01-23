@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 from rdkit import Chem
-from nd_sim import utils
+from hsr import utils
 
 class TestUtilsFunctions(unittest.TestCase):
     

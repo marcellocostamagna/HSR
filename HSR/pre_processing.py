@@ -3,9 +3,9 @@
 # GNU Lesser General Public License v3.0 (or any later version).
 # See the LICENSE file for more details.
 
-# Script to collect and pre-process molecules from SDF files and 
+# Script to collect and pre-process molecules from files and 
 # convert them in datastructures to compute their similarity based on 
-# a PCA method considering coordinates, protons, neutrons and charges of every atom.
+# a PCA method considering coordinates and additional features.
 
 import numpy as np
 from rdkit import Chem
@@ -49,7 +49,7 @@ def read_mol_from_file(path, removeHs=False, sanitize=False):
 
 def load_molecules_from_sdf(path, removeHs=False, sanitize=False):
     """
-    Load molecules from an SDF file.
+    Load a list of molecules from an SDF file.
     
     Parameters
     ----------
@@ -83,7 +83,7 @@ def molecule_to_ndarray(molecule, features=DEFAULT_FEATURES, removeHs=False):
     features : dict[str, callable], optional
         A dictionary where each key is a feature name (str) and the value is a callable 
         function to compute that feature. The function takes an RDKit atom object as input 
-        and returns a feature value (typically a numeric type).
+        and returns a feature value (a numeric type).
         Defaults to DEFAULT_FEATURES.
     removeHs : : bool, optional
         If True, hydrogen atoms will not be included in the array representation.

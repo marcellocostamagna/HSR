@@ -1,13 +1,13 @@
 Similarity results for protonated amines (constant dilution)
 
 Molecules NumAtoms MolWeight 3D:[x,y,z] 4D:[x,y,z,√p] 5D:[x,y,z,√p,q]
- 1-methyl       10    45.085    0.87622      0.887557        0.894167
+ 1-methyl       10    45.085   0.876221      0.887557        0.894167
   2-ethyl       13    59.112   0.910121      0.908717        0.915647
  3-propyl       16    73.139   0.944732      0.927462        0.935741
   4-butyl       19    87.166   0.953039      0.949389        0.950545
  5-pentyl       22   101.193   0.972544      0.961573        0.968012
-   6-esyl       25    115.22   0.981538      0.962746        0.966524
-  7-eptyl       28   129.247   0.977557      0.963167        0.964275
+   6-esyl       25    115.22   0.981537      0.962746        0.966524
+  7-eptyl       28   129.247   0.977556      0.963167        0.964275
   8-octyl       31   143.274   0.980238      0.964249        0.964328
   9-nonyl       34   157.301   0.973552      0.961821         0.96314
  10-decyl       37   171.328   0.973145      0.964193        0.964532
@@ -15,7 +15,7 @@ Molecules NumAtoms MolWeight 3D:[x,y,z] 4D:[x,y,z,√p] 5D:[x,y,z,√p,q]
 Similarity results for deuterated (C_13) amines (constant dilution)
 
 Molecules NumAtoms MolWeight 3D:[x,y,z] 4D:[x,y,z,√p] 5D:[x,y,z,√p,√n]
- 1-methyl       10    45.085   0.999973      0.999941         0.946609
+ 1-methyl       10    45.085   0.999973      0.999942         0.946609
   2-ethyl       13    59.112   0.999971       0.99996         0.975127
  3-propyl       16    73.139   0.999988      0.999976         0.982004
   4-butyl       19    87.166   0.999988      0.999985          0.98781

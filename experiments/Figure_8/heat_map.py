@@ -1,5 +1,4 @@
 from rdkit import Chem
-from rdkit.Chem import AllChem
 import numpy as np
 import os
 from hsr.pre_processing import *
@@ -38,17 +37,17 @@ def generate_all_single_deuterium_variants_and_compute_similarity(molecule, outp
 
 # Load your molecule here
 cwd = os.getcwd()
-sdf_file_path = os.path.join(cwd, f'{cwd}/experiments/Figure_8/original_molecule.sdf')
+sdf_file_path = os.path.join(cwd, f'{cwd}/original_molecule.sdf')
 molecules = Chem.SDMolSupplier(sdf_file_path, removeHs=False, sanitize=False)
 original_molecule = molecules[0]
 
 # Assuming the output path for the tagged molecule
-sdf_output_path = os.path.join(cwd, f'{cwd}/experiments/Figure_8/tagged_molecule.sdf')
+sdf_output_path = os.path.join(cwd, f'{cwd}/tagged_molecule.sdf')
 
 # Generate deuterium variants, compute similarities, and tag hydrogens
 similarity_values = generate_all_single_deuterium_variants_and_compute_similarity(original_molecule, sdf_output_path)
 
-print(f"Similarity values: {similarity_values}")
+# print(f"Similarity values: {similarity_values}")
 
 import pymol
 from pymol import cmd
@@ -63,17 +62,17 @@ def similarity_to_color(similarity_values_dict):
     for key, value in similarity_values_dict.items():
         similarity_values_dict[key] = round(value, 4)
     similarity_values = list(similarity_values_dict.values())
-    print(f'similarity_values: {similarity_values}')
-    print(len(similarity_values))
+    # print(f'similarity_values: {similarity_values}')
+    # print(len(similarity_values))
     unique_similarity_values = sorted(set(similarity_values))
     
-    print(f'unique_similarity_values: {unique_similarity_values}')
-    print(len(unique_similarity_values))
+    # print(f'unique_similarity_values: {unique_similarity_values}')
+    # print(len(unique_similarity_values))
     
     # Normalize the similarity values to a [0, 1] range for color mapping
     min_val, max_val = min(similarity_values), max(similarity_values)
     normalized_unique_values = [(val - min_val) / (max_val - min_val) for val in unique_similarity_values]
-    print(len(normalized_unique_values))
+    # print(len(normalized_unique_values))
     # Apply a non-linear transformation to emphasize differences
     emphasized_unique_values = [np.power(val, 2) for val in normalized_unique_values]  # Squaring to spread values
     
@@ -82,7 +81,7 @@ def similarity_to_color(similarity_values_dict):
     
     # Get corresponding color for each emphasized value
     unique_colors = [cmap(value) for value in emphasized_unique_values]
-    print(len(unique_colors))
+    # print(len(unique_colors))
     
      # Map each original similarity value to its corresponding color
     value_to_color = {val: cmap(np.power((val - min_val) / (max_val - min_val), 2)) for val in unique_similarity_values}
@@ -108,7 +107,7 @@ def similarity_to_color(similarity_values_dict):
     
     plt.tight_layout()  # Adjust layout to make room for the rotated x-tick labels
     # save figure as svg
-    plt.savefig(f'{os.getcwd()}/experiments/Figure_8/similarity_legend.svg', format='svg')
+    plt.savefig(f'{os.getcwd()}/similarity_legend.svg', format='svg')
     plt.show()
 
     return color_mapping
@@ -124,15 +123,15 @@ for i in range(13):
     tag = f"H_{i+1}"
     pos = [float(x) for x in rdkit_mol.GetProp(tag).split(',')]
     coord_to_tag[i] = [tag, pos]
-print(f'coord_to_tag: {coord_to_tag}')
+# print(f'coord_to_tag: {coord_to_tag}')
 
 # MAKING SPHERES FOR THE HYDROGENS
 # generate the colors for the hydrogen atoms
 colors = similarity_to_color(similarity_values)
 
-for i in range(13):
-    print(f'color: {colors[i][0], colors[i][1], colors[i][2]}')
-    print(f'pos: {[coord_to_tag[i][1][0], coord_to_tag[i][1][1], coord_to_tag[i][1][2]]}')
+# for i in range(13):
+#     print(f'color: {colors[i][0], colors[i][1], colors[i][2]}')
+#     print(f'pos: {[coord_to_tag[i][1][0], coord_to_tag[i][1][1], coord_to_tag[i][1][2]]}')
 
 # create a list pf spheres with the correct coordinates and colors, and radius 1
 d = 0.3

@@ -12,7 +12,7 @@ cwd = os.getcwd()
 
 np.set_printoptions(precision=4, suppress=True)
 
-molecule = load_molecules_from_sdf(f'{cwd}/sd_data/Figure_1_molecule.sdf', removeHs=False, sanitize=False)[0]
+molecule = load_molecules_from_sdf(f'{cwd}/original_molecule.sdf', removeHs=False, sanitize=False)[0]
 
 molecule_array = molecule_to_ndarray(molecule, features=None)
 
@@ -40,7 +40,7 @@ print(f'PC3 max: {PC3_max}')
 
     
 # save the molecule to an SDF file
-writer = Chem.SDWriter(f'{cwd}/experiments/transformed_molecule.sdf')
+writer = Chem.SDWriter(f'{cwd}/transformed_molecule.sdf')
 writer.write(new_molecule)
 writer.close()
 
@@ -48,7 +48,7 @@ writer.close()
 pymol.finish_launching()
 
 # Load the molecule
-molecule_path = f'{cwd}/experiments/Figure2/transformed_molecule.sdf'
+molecule_path = f'{cwd}/transformed_molecule.sdf'
 cmd.load(molecule_path, 'molecule')
 
 # create_axes()

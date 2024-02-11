@@ -1,17 +1,18 @@
 import os
+import sys
 from hsr.pre_processing import *
 from hsr.pca_transform import *
-from experiments.usr import get_geometrical_center
-from experiments.perturbations import *
 import pymol
 from pymol import cmd
 from pymol.cgo import *
-from rdkit.Geometry import Point3D
+sys.path.append(os.path.abspath('../'))
+from perturbations import *
+from usr import get_geometrical_center
 
 # MOLECULE SELCTION AND CHIRALITY
 # Select one or the other to visualize an enantiomer at the time
-# file_name = 'helicene_M_centered.sdf'
-file_name = 'helicene_P_centered.sdf'
+# file_name = 'helicene_M.sdf'
+file_name = 'helicene_P.sdf'
 
 # Select chirality to be True or False
 # chirality = True
@@ -19,7 +20,7 @@ chirality = False
 
 cwd = os.getcwd()
 
-molecule = load_molecules_from_sdf(f'{cwd}/experiments/Figure_3/{file_name}', removeHs=False, sanitize=False)[0]
+molecule = load_molecules_from_sdf(f'{cwd}/{file_name}', removeHs=False, sanitize=False)[0]
 
 molecule_coordinates = []
 for atom in molecule.GetAtoms():
@@ -49,7 +50,7 @@ norm_pc3 = pc3 / np.linalg.norm(pc3)
 pymol.finish_launching()
 
 # Load the molecule
-molecule_path = f'{cwd}/experiments/Figure_3/{file_name}'
+molecule_path = f'{cwd}/{file_name}'
 
 cmd.load(molecule_path, 'molecule')
 

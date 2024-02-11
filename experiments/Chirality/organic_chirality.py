@@ -1,21 +1,22 @@
-# Scrpits collectiing examples of chirality and isomerism
-
-import numpy as np  
+import sys
+import os 
 from hsr.pre_processing import *
 from hsr.pca_transform import * 
 from hsr.fingerprint import *
 from hsr.similarity import *
 from hsr.utils import *
-from trials.perturbations import *
-import os 
+import numpy as np  
+sys.path.append(os.path.abspath('../'))
+from perturbations import *
+
 
 cwd = os.getcwd()
 
 print(f'\nHSR similarity of organic enantiomers: \n')
-sorted_files = sorted(os.listdir(f'{cwd}/experiments/Chirality/organic_molecules'), key=lambda x: int(x.split('-')[0]))
+sorted_files = sorted(os.listdir(f'{cwd}/organic_molecules'), key=lambda x: int(x.split('-')[0]))
 for file in sorted_files:
     if file.endswith('.sdf'):
-        molecules = load_molecules_from_sdf(f'{cwd}/experiments/Chirality/organic_molecules/{file}', removeHs=False, sanitize=False)
+        molecules = load_molecules_from_sdf(f'{cwd}/organic_molecules/{file}', removeHs=False, sanitize=False)
     
     ### ROTATE MOLECULES ###
     rotated_molecules = []

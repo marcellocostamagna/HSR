@@ -1,18 +1,20 @@
-# Scrpits collectiing examples of chirality and isomerism
-
-import numpy as np  
+import sys
+import os 
 from hsr.pre_processing import *
 from hsr.pca_transform import * 
 from hsr.fingerprint import *
 from hsr.similarity import *
 from hsr.utils import *
-from trials.perturbations import *
-import os 
+import numpy as np  
+sys.path.append(os.path.abspath('../'))
+from perturbations import *
+from perturbations import *
+
 
 cwd = os.getcwd()
 
 ### INORGANIC OPTICAL ISOMERS ###
-molecules = load_molecules_from_sdf(f'{cwd}/experiments/Chirality/lambda_delta_isomers.sdf', removeHs=False, sanitize=False)
+molecules = load_molecules_from_sdf(f'{cwd}/lambda_delta_isomers.sdf', removeHs=False, sanitize=False)
 
 ### ROTATE MOLECULES ###
 rotated_molecules = []

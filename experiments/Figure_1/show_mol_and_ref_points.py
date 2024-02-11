@@ -1,7 +1,9 @@
 import numpy as np
 import os
+import sys
 from hsr.pre_processing import *
-from experiments.usr import *
+sys.path.append(os.path.abspath('../'))
+from usr import *
 import pymol
 from pymol import cmd
 
@@ -9,7 +11,7 @@ cwd = os.getcwd()
 
 np.set_printoptions(precision=4, suppress=True)
 
-molecule = load_molecules_from_sdf(f'{cwd}/experiments/Figure_1/Figure_1_molecule.sdf', removeHs=True, sanitize=True)[0]
+molecule = load_molecules_from_sdf(f'{cwd}/molecule.sdf', removeHs=True, sanitize=True)[0]
 
 molecule_coords = get_molecule_coordinates(molecule)
 
@@ -32,7 +34,7 @@ from pymol import cmd
 pymol.finish_launching()
 
 # Load the molecule
-molecule_path = f'{cwd}/sd_data/Figure_1_molecule.sdf'
+molecule_path = f'{cwd}/molecule.sdf'
 cmd.load(molecule_path, 'molecule')
     
 # Create pseudatoms at each point of interest

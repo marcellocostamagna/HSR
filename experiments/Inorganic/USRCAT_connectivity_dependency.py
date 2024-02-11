@@ -1,14 +1,17 @@
 import numpy as np  
-from hsr.pre_processing import *
-from trials.perturbations import *
-from experiments.usr import *
-from rdkit.Chem.rdMolDescriptors import GetUSRScore, GetUSR, GetUSRCAT
 import os 
+import sys
+from hsr.pre_processing import *
+
+from rdkit.Chem.rdMolDescriptors import GetUSRScore, GetUSR, GetUSRCAT
+sys.path.append(os.path.abspath('../'))
+from perturbations import *
+from usr import *
 
 cwd = os.getcwd()
 
 # PRE-PROCESSING
-molecules = load_molecules_from_sdf(f'{cwd}/experiments/Inorganic/connectivity_dependency.sdf', removeHs=False, sanitize=False)
+molecules = load_molecules_from_sdf(f'{cwd}/connectivity_dependency.sdf', removeHs=False, sanitize=False)
 # mol1 --> Dative bonds = single bonds
 # mol2 --> Remove dative bond betwenn Co and O
 # mol3 --> Remove dative bond betwenn Co and O and Co and Ns

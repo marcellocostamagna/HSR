@@ -1,11 +1,12 @@
-
 import os
+import sys
 from hsr.pre_processing import *
-from experiments.csr import *
+sys.path.append(os.path.abspath('../'))
+from csr import *
 
 cwd = os.getcwd()
 
-molecules = load_molecules_from_sdf(f'{cwd}/experiments/Chirality/lambda_delta_isomers.sdf', removeHs=False, sanitize=False)
+molecules = load_molecules_from_sdf(f'{cwd}/lambda_delta_isomers.sdf', removeHs=False, sanitize=False)
 
 n_molecules = len(molecules)
 print(f'\n(in-house) CSR Similarity of inorganic enantiomers:')

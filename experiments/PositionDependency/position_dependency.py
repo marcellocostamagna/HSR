@@ -6,9 +6,11 @@ from hsr.pca_transform import *
 from hsr.fingerprint import *
 from hsr.similarity import *
 from hsr.utils import *
-from trials.perturbations import *
 import os 
+import sys
 from copy import deepcopy
+sys.path.append(os.path.abspath('../'))
+from perturbations import *
 
 np.set_printoptions(precision=4, suppress=True)
 
@@ -28,7 +30,7 @@ cwd = os.getcwd()
 
 print(f'Position dependency of feature change')
 
-original_molecule = load_molecules_from_sdf(f'{cwd}/experiments/PositionDependency/molecule.sdf', removeHs=False, sanitize=False)[0]
+original_molecule = load_molecules_from_sdf(f'{cwd}/molecule.sdf', removeHs=False, sanitize=False)[0]
 
 modified_molecules = generate_all_single_deuterium_variants(original_molecule)
 

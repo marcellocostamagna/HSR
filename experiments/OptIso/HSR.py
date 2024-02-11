@@ -1,21 +1,23 @@
 import numpy as np  
+import os 
+import sys
 from hsr.pre_processing import *
 from hsr.pca_transform import * 
 from hsr.fingerprint import *
 from hsr.similarity import *
 from hsr.utils import *
-from trials.perturbations import *
-import os 
+sys.path.append(os.path.abspath('../'))
+from perturbations import *
 
 np.set_printoptions(precision=4, suppress=True)
 
 cwd = os.getcwd()
 
 print(f'\nContinuity (HSR): \n')
-sorted_files = sorted(os.listdir(f'{cwd}/experiments/OptIso/molecules'))
+sorted_files = sorted(os.listdir(f'{cwd}/molecules'))
 for file in sorted_files:
     if file.endswith('.sdf'):
-        molecules = load_molecules_from_sdf(f'{cwd}/experiments/OptIso/molecules/{file}', removeHs=False, sanitize=False)
+        molecules = load_molecules_from_sdf(f'{cwd}/molecules/{file}', removeHs=False, sanitize=False)
     
     ### ROTATE MOLECULES ###
     rotated_molecules = []

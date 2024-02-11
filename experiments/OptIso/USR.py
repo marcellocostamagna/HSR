@@ -1,22 +1,20 @@
-from rdkit import Chem
 import numpy as np
-from scipy.spatial import distance
-from scipy.stats import skew
 import os
+import sys
 from hsr.pre_processing import *
-import rdkit
 from rdkit.Chem.rdMolDescriptors import GetUSRScore, GetUSR
-from experiments.usr import *
+sys.path.append(os.path.abspath('../'))
+from usr import *
 
 cwd = os.getcwd()
 
 np.set_printoptions(precision=4, suppress=True)
 
 print(f'\nContinuity (USR): \n')
-sorted_files = sorted(os.listdir(f'{cwd}/experiments/OptIso/molecules'))
+sorted_files = sorted(os.listdir(f'{cwd}/molecules'))
 for file in sorted_files:
     if file.endswith('.sdf'):
-        molecules = load_molecules_from_sdf(f'{cwd}/experiments/OptIso/molecules/{file}', removeHs=False, sanitize=False)
+        molecules = load_molecules_from_sdf(f'{cwd}/molecules/{file}', removeHs=False, sanitize=False)
     
     print(f'\n{file[:-4]}:\n')
     print(f'Reference points of the molecules:\n')

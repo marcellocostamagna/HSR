@@ -1,17 +1,18 @@
 import numpy as np  
-from hsr.pre_processing import *
-from trials.perturbations import *
-from experiments.usr import *
-from rdkit.Chem.rdMolDescriptors import GetUSRScore, GetUSR, GetUSRCAT
+import sys
 import os 
-
+from hsr.pre_processing import *
+from rdkit.Chem.rdMolDescriptors import GetUSRScore, GetUSR, GetUSRCAT
+sys.path.append(os.path.abspath('../'))
+from usr import *
+from perturbations import *
 cwd = os.getcwd()
 
 print(f'\nUSR and USRCAT similarity of inorganic compounds: \n')
-sorted_files = sorted(os.listdir(f'{cwd}/experiments/Inorganic/molecules'), key=lambda x: int(x.split('-')[0]))
+sorted_files = sorted(os.listdir(f'{cwd}/molecules'), key=lambda x: int(x.split('-')[0]))
 for file in sorted_files:
     if file.endswith('.sdf'):
-        molecules = load_molecules_from_sdf(f'{cwd}/experiments/Inorganic/molecules/{file}', removeHs=False, sanitize=False)
+        molecules = load_molecules_from_sdf(f'{cwd}/molecules/{file}', removeHs=False, sanitize=False)
     
     ### ROTATE MOLECULES ###
     rotated_molecules = []

@@ -1,14 +1,16 @@
 import os
+import sys
 from hsr.pre_processing import *
-from experiments.perturbations import *
 import pymol
 from pymol import cmd
 from pymol.cgo import *
+sys.path.append(os.path.abspath('../'))
+from perturbations import *
 
 cwd = os.getcwd()
 
-molecule = load_molecules_from_sdf(f'{cwd}/sd_data/Figure_1_molecule.sdf', removeHs=False, sanitize=False)[0]
-
+molecule = load_molecules_from_sdf(f'{cwd}/original_molecule.sdf', removeHs=False, sanitize=False)[0]
+molecule
 # rotate the molecule
 angle1 = 0
 angle2 = 30
@@ -20,7 +22,7 @@ mol = translate_molecule(mol,0,0,2)
 
 # Save the molecule
 # save the molecule to an SDF file
-writer = Chem.SDWriter(f'{cwd}/experiments/Figure_2/original_molecule.sdf')
+writer = Chem.SDWriter(f'{cwd}/molecule_xyz.sdf')
 writer.write(mol)
 writer.close()
 
@@ -28,7 +30,7 @@ writer.close()
 pymol.finish_launching()
 
 # Load the molecule
-molecule_path = f'{cwd}/experiments/Figure_2/original_molecule.sdf'
+molecule_path = f'{cwd}/molecule_xyz.sdf'
 
 cmd.load(molecule_path, 'molecule')
 

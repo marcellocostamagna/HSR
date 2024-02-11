@@ -1,18 +1,18 @@
+import os
+import sys
 import numpy as np  
 from hsr.pre_processing import *
 from hsr.pca_transform import * 
 from hsr.fingerprint import *
 from hsr.similarity import *
 from hsr.utils import *
-from trials.perturbations import *
-import os 
-import numpy as np  
 import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
-import os 
 import re
 from rdkit.Chem import Descriptors
+sys.path.append(os.path.abspath('../'))
+from perturbations import *
 
 PROTON_FEATURES = {
     'protons' : extract_proton_number,
@@ -30,8 +30,8 @@ NEUTRON_FEATURES = {
     
 
 np.set_printoptions(precision=4, suppress=True)
-directory_path = f'{os.getcwd()}/sd_data/amines'  # Use your current directory or specify a path
-pattern = re.compile(r"^(?:[1-9]|1[0-4])-.+\.sdf$")  # Pattern to match files like "1-name.sdf" to "12-name.sdf"
+directory_path = f'{os.getcwd()}/amines' 
+pattern = re.compile(r"^(?:[1-9]|1[0-4])-.+\.sdf$")  # Pattern to match files like "1-name.sdf" 
 
 file_names = []
 for file in os.listdir(directory_path):
@@ -119,7 +119,7 @@ similarity_table_C13.rename(columns={'index': 'Molecules'}, inplace=True)
 
 
 # # Save the results to a text file with formatted string alignment
-with open(f'{os.getcwd()}/experiments/Features/similarity_scores.txt', 'w') as f:
+with open(f'{os.getcwd()}/similarity_scores.txt', 'w') as f:
     f.write(f'Similarity results for protonated amines (constant dilution)\n\n')
     f.write(similarity_table_H.to_string(index=False))
     f.write('\n\n')
@@ -173,7 +173,7 @@ ax6.set_xticks(x_ticks)
 
 plt.tight_layout(pad=1.0, h_pad=0.5, w_pad=0.5) 
 
-plt.savefig(f'{os.getcwd()}/experiments/Features/similarity_&_distances.svg', format='svg')
+plt.savefig(f'{os.getcwd()}/similarity_&_distances.svg', format='svg')
 plt.show()
 
 

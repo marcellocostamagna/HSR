@@ -12,7 +12,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'hsr = HSR.hsr_cli:main']
+            'hsr = hsr.hsr_cli:main']
     },
 
 )

@@ -5,11 +5,12 @@
 
 # Script to collect and pre-process molecules from files and 
 # convert them in datastructures to compute their similarity based on 
-# a PCA method considering coordinates and additional features.
+# PCA method considering coordinates and additional features.
 
 import numpy as np
 from rdkit import Chem
-from utils import DEFAULT_FEATURES
+from rdkit.Chem.rdmolfiles import MolFromMol2File, MolFromMolFile, MolFromPDBFile, MolFromXYZFile, SDMolSupplier
+from .utils import *
 
 
 def read_mol_from_file(path, removeHs=False, sanitize=False):
@@ -32,13 +33,13 @@ def read_mol_from_file(path, removeHs=False, sanitize=False):
     """
     extension = path.split('.')[-1]
     if extension == 'mol':
-        return Chem.rmmolfiles.MolFromMolFile(path, removeHs=removeHs, sanitize=sanitize)
+        return MolFromMolFile(path, removeHs=removeHs, sanitize=sanitize)
     elif extension == 'mol2':
-        return Chem.rdmolfiles.MolFromMol2File(path, removeHs=removeHs, sanitize=sanitize)
+        return MolFromMol2File(path, removeHs=removeHs, sanitize=sanitize)
     elif extension == 'pdb':
-        return Chem.rdmolfiles.MolFromPDBFile(path, removeHs=removeHs, sanitize=sanitize)
+        return MolFromPDBFile(path, removeHs=removeHs, sanitize=sanitize)
     elif extension == 'xyz':
-        return Chem.rdmolfiles.MolFromXYZFile(path, removeHs=removeHs, sanitize=sanitize)
+        return MolFromXYZFile(path)
     elif extension == 'sdf':
         suppl = Chem.SDMolSupplier(path, removeHs=removeHs, sanitize=sanitize)
         return next(suppl, None)

@@ -5,9 +5,9 @@ import tempfile
 from rdkit import Chem
 from hsr import *
 import pytest
+from rdkit.Chem.rdmolfiles import MolToMolFile
 
 # Create fixture for benzene molecule
-
 @pytest.fixture
 def benzene_molecule():
     # the following sdf information was extracted for benzene molecule
@@ -52,10 +52,60 @@ def test_load_molecules_from_sdf(benzene_molecule):
         writer.write(benzene_molecule)
         writer.close()
  
-    molecules = pre_processing.load_molecules_from_sdf(temp_name)
+    molecule_H = pre_processing.load_molecules_from_sdf(temp_name, removeHs=False, sanitize=False)
+    molecule_noH = pre_processing.load_molecules_from_sdf(temp_name, removeHs=True, sanitize=True)
+    os.remove(temp_name)
+    assert isinstance(molecule_H[0], Chem.Mol)
+    assert isinstance(molecule_noH[0], Chem.Mol)
+    assert molecule_H[0].GetNumAtoms() == 12
+    assert molecule_noH[0].GetNumAtoms() == 6
 
-    assert len(molecules) == 1
-    assert isinstance(molecules[0], Chem.Mol)
+def test_read_molecule_from_file(benzene_molecule):
+   
+    # File .mol
+    Chem.MolToMolFile(benzene_molecule, 'benzene.mol')
+    molecule_H = pre_processing.read_mol_from_file('benzene.mol', removeHs=False, sanitize=False)
+    molecule_noH = pre_processing.read_mol_from_file('benzene.mol', removeHs=True, sanitize=True)
+    os.remove('benzene.mol')
+    assert isinstance(molecule_H, Chem.Mol)
+    assert isinstance(molecule_noH, Chem.Mol)
+    assert molecule_H.GetNumAtoms() == 12
+    assert molecule_noH.GetNumAtoms() == 6
+    
+    # File .mol2 (no rdkit function to write mol2 file)
+    
+    # File .pdb
+    Chem.MolToPDBFile(benzene_molecule, 'benzene.pdb')
+    molecule_H = pre_processing.read_mol_from_file('benzene.pdb', removeHs=False, sanitize=False)
+    molecule_noH = pre_processing.read_mol_from_file('benzene.pdb', removeHs=True, sanitize=True)
+    os.remove('benzene.pdb')
+    assert isinstance(molecule_H, Chem.Mol)
+    assert isinstance(molecule_noH, Chem.Mol)
+    assert molecule_H.GetNumAtoms() == 12
+    assert molecule_noH.GetNumAtoms() == 6
+    
+    # File .xyz
+    Chem.MolToXYZFile(benzene_molecule, 'benzene.xyz')
+    molecule = pre_processing.read_mol_from_file('benzene.xyz')
+    os.remove('benzene.xyz')
+    assert isinstance(molecule, Chem.Mol)
+    assert molecule.GetNumAtoms() == 12
+    
+    # File .sdf
+    with tempfile.NamedTemporaryFile(suffix=".sdf", delete=False) as temp:
+        temp_name = temp.name
+        writer = Chem.SDWriter(temp_name)
+        writer.write(benzene_molecule)
+        writer.close()
+        
+    molecule_H = pre_processing.read_mol_from_file(temp_name, removeHs=False, sanitize=False)
+    molecule_noH = pre_processing.read_mol_from_file(temp_name, removeHs=True, sanitize=True)
+    os.remove(temp_name)
+    assert isinstance(molecule_H, Chem.Mol)
+    assert isinstance(molecule_noH, Chem.Mol)
+    assert molecule_H.GetNumAtoms() == 12
+    assert molecule_noH.GetNumAtoms() == 6
+    
 
 def test_molecule_to_ndarray(benzene_molecule):
     ndarray_representation = pre_processing.molecule_to_ndarray(benzene_molecule)

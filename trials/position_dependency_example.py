@@ -1,11 +1,11 @@
 # Script to show the similarity value dependency on the position the same change occurs 
 
 import numpy as np  
-from nd_sim.pre_processing import *
-from nd_sim.pca_transform import * 
-from nd_sim.fingerprint import *
-from nd_sim.similarity import *
-from nd_sim.utils import *
+from hsr.pre_processing import *
+from hsr.pca_transform import * 
+from hsr.fingerprint import *
+from hsr.similarity import *
+from hsr.utils import *
 from trials.perturbations import *
 import os 
 from rdkit import Chem

@@ -33,7 +33,6 @@ def translate_points(points, x, y, z):
 
     return translated_points
 
-
 def rotate_points(points, angle1_deg, angle2_deg, angle3_deg):
     """
     Rotate a set of 3D points around the x, y, and z axes by the given angles.
@@ -81,7 +80,6 @@ def rotate_points(points, angle1_deg, angle2_deg, angle3_deg):
     # Apply the combined rotation matrix
     rotated_points = np.dot(R_combined, points.T).T
 
-
     return rotated_points
 
 def rotation_matrix(axis, theta):
@@ -120,26 +118,6 @@ def rotate_molecule(molecule, x_angle_deg, y_angle_deg, z_angle_deg):
         molecule.GetConformer().SetAtomPosition(atom.GetIdx(), Chem.rdGeometry.Point3D(*new_pos))
 
     return molecule
-
-# def perturb_coordinates(points, decimal_place):
-#     """
-#     Apply random perturbations to the input 3D points based on the specified decimal place.
-
-#     Parameters:
-#     points (numpy.ndarray): A numpy array of shape (n, 3) representing the 3D coordinates of n points.
-#     decimal_place (int): The decimal place where the perturbation will take effect.
-
-#     Returns:
-#     numpy.ndarray: A new numpy array with the perturbed coordinates.
-#     """
-
-#     perturbed_points = np.zeros_like(points)
-#     for i, point in enumerate(points):
-#         perturbation_range = 10 ** -decimal_place
-#         perturbations = np.random.uniform(-perturbation_range * 9, perturbation_range * 9, point.shape)
-#         perturbed_points[i] = point + perturbations
-
-#     return perturbed_points
 
 def perturb_coordinates(points, decimal_place, percentage=1.0):
     """

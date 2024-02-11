@@ -2,11 +2,11 @@
 # All steps of the similarity method are comptued sequentially 
 
 import numpy as np  
-from nd_sim.pre_processing import *
-from nd_sim.pca_transform import * 
-from nd_sim.fingerprint import *
-from nd_sim.similarity import *
-from nd_sim.utils import *
+from hsr.pre_processing import *
+from hsr.pca_transform import * 
+from hsr.fingerprint import *
+from hsr.similarity import *
+from hsr.utils import *
 from trials.perturbations import *
 import os 
 

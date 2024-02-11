@@ -1,10 +1,9 @@
 import numpy as np  
-from nd_sim.pre_processing import *
-from nd_sim.pca_transform import * 
-from nd_sim.fingerprint import *
-from nd_sim.similarity import *
-from nd_sim.utils import *
-from trials.perturbations import *
+from hsr.pre_processing import *
+from hsr.pca_transform import * 
+from hsr.fingerprint import *
+from hsr.similarity import *
+from hsr.utils import *
 import os 
 
 np.set_printoptions(precision=4, suppress=True)
@@ -15,6 +14,8 @@ cwd = os.getcwd()
 molecules = load_molecules_from_sdf(f'{cwd}/sd_data/simple_case.sdf', removeHs=False, sanitize=False)
 
 fingerprints = [generate_fingerprint_from_molecule(molecule, EXAMPLE_FEATURES, scaling='matrix') for molecule in molecules]
+
+print(f'Fingerprints: \n{fingerprints[0]} \n{fingerprints[1]}')
 
 n_molecules = len(fingerprints)
 for i in range(n_molecules):

@@ -1,11 +1,11 @@
 # Scripts for creating (and saving) isomers from a molecule by reflecting it for each axis.
 
 import numpy as np  
-from nd_sim.pre_processing import *
-from nd_sim.pca_transform import * 
-from nd_sim.fingerprint import *
-from nd_sim.similarity import *
-from nd_sim.utils import *
+from hsr.pre_processing import *
+from hsr.pca_transform import * 
+from hsr.fingerprint import *
+from hsr.similarity import *
+from hsr.utils import *
 from trials.perturbations import *
 import os 
 from rdkit import Chem
@@ -23,7 +23,7 @@ np.set_printoptions(precision=4, suppress=True)
 cwd = os.getcwd()
 # PRE-PROCESSING
 # List of molecules from SDF file
-molecules = load_molecules_from_sdf(f'{cwd}/similarity/sd_data/cis_trans_isomerism_planar_substituted.sdf', removeHs=False, sanitize=False)
+molecules = load_molecules_from_sdf(f'{cwd}/sd_data/Co_diamine_2.sdf', removeHs=False, sanitize=False)
 
 
 ## SIMILARITY BETWEEN ISOMERS CONSTRUCTED BY REFLECTION FOR EACH AXIS ##
@@ -33,7 +33,7 @@ mol = molecules[0]
 
 
 # Open an SDF writer and specify the output SDF file
-with Chem.SDWriter(f'{cwd}/similarity/sd_data/cis_trans_isomerisms_planar_substituted.sdf') as writer:
+with Chem.SDWriter(f'{cwd}/sd_data/lamda_delta_isomerism_2.sdf') as writer:
     # Write the original molecule
     writer.write(mol)
 

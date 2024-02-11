@@ -1,6 +1,8 @@
 Metadata-Version: 2.1
 Name: HSR
-Version: 0.1.0
+Version: 0.1.2
+Author: Marcello Costamagna
+License: GNU Affero General Public License
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: numpy

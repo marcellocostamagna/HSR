@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-### Installing ND_sim
+### Installing HSR
 
 You can install HSR using either pip or conda:
 
@@ -30,14 +30,14 @@ mol2 = load_molecules_from_sdf('mol2.sdf')
 similarity = compute_similarity(mol1, mol2)
 
 ```
-For a detailed overview of ND_sim's methodology check our [documentation](https://marcellocostamagna.github.io/ND_sim/).
+For a detailed overview of HSR's methodology check our [documentation](https://marcellocostamagna.github.io/HSR/).
 
 
 ### Licensing
 
 HSR is licensed under the [GNU Affero General Public License Version 3](https://www.gnu.org/licenses/agpl-3.0.html). For more details, see the LICENSE file.
 
-### Citing ND_sim
+### Citing HSR
 
 If you use HSR in your research, please cite it as follows:
 
@@ -45,6 +45,6 @@ If you use HSR in your research, please cite it as follows:
 
 ### Contributing
 
-Contributions to HSR are welcome! Please read our [Contributing Guidelines](https://marcellocostamagna.github.io/ND_sim/CONTRIBUTING.html) for information on how to get started.
+Contributions to HSR are welcome! Please read our [Contributing Guidelines](https://marcellocostamagna.github.io/HSR/CONTRIBUTING.html) for information on how to get started.
 
 

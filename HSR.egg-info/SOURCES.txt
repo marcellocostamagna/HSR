@@ -1,4 +1,5 @@
 LICENSE
+MANIFEST.in
 setup.py
 HSR.egg-info/PKG-INFO
 HSR.egg-info/SOURCES.txt

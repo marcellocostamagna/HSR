@@ -82,7 +82,7 @@ def process_folder(args):
 
 if __name__ == "__main__":
     print(f'CWD: {os.getcwd()}')
-    root_directory = f"{os.getcwd()}/validation/all"
+    root_directory = f"{os.getcwd()}/all"
     methods = ['usr']#['usr', 'usr_cat', 'electroshape']
     enrichment_factors = {0.0025: [], 0.005: [], 0.01: [], 0.02: [], 0.03: [], 0.05: []}
     overall_results = {}

@@ -1,45 +1,45 @@
-nd\_sim package
+hsr package
 ===============
 
 Submodules
 ----------
 
-nd\_sim.fingerprint module
+hsr.fingerprint module
 --------------------------
 
-.. automodule:: nd_sim.fingerprint
+.. automodule:: hsr.fingerprint
    :members:
    :undoc-members:
    :show-inheritance:
 
-nd\_sim.pca\_transform module
+hsr.pca\_transform module
 -----------------------------
 
-.. automodule:: nd_sim.pca_transform
+.. automodule:: hsr.pca_transform
    :members:
    :undoc-members:
    :show-inheritance:
 
-nd\_sim.pre\_processing module
+hsr.pre\_processing module
 ------------------------------
 
-.. automodule:: nd_sim.pre_processing
+.. automodule:: hsr.pre_processing
    :members:
    :undoc-members:
    :show-inheritance:
 
-nd\_sim.similarity module
+hsr.similarity module
 -------------------------
 
-.. automodule:: nd_sim.similarity
+.. automodule:: hsr.similarity
    :members:
    :undoc-members:
    :show-inheritance:
 
-nd\_sim.utils module
+hsr.utils module
 --------------------
 
-.. automodule:: nd_sim.utils
+.. automodule:: hsr.utils
    :members:
    :undoc-members:
    :show-inheritance:
@@ -47,7 +47,7 @@ nd\_sim.utils module
 Module contents
 ---------------
 
-.. automodule:: nd_sim
+.. automodule:: hsr
    :members:
    :undoc-members:
    :show-inheritance:

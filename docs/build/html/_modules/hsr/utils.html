@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nd_sim.utils &mdash; ND_sim  documentation</title>
+  <title>hsr.utils &mdash; HSR  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            ND_sim
+            HSR
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -42,8 +42,8 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">nd_sim</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../detailed_overview.html">Detailed Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing to ND_sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../detailed_overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing to HSR</a></li>
 </ul>
 
         </div>
@@ -52,7 +52,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">ND_sim</a>
+          <a href="../../index.html">HSR</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -61,7 +61,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">nd_sim.utils</li>
+      <li class="breadcrumb-item active">hsr.utils</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -70,9 +70,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for nd_sim.utils</h1><div class="highlight"><pre>
-<span></span><span class="c1"># ND_sim</span>
-<span class="c1"># This file is part of ND_sim, which is licensed under the</span>
+  <h1>Source code for hsr.utils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># HSR: Hyper-Shape Recognition</span>
+<span class="c1"># This file is part of HSR, which is licensed under the</span>
 <span class="c1"># GNU Lesser General Public License v3.0 (or any later version).</span>
 <span class="c1"># See the LICENSE file for more details.</span>
 
@@ -84,117 +84,33 @@
 
 <span class="c1">### Fetaures functions ###</span>
 <div class="viewcode-block" id="extract_proton_number">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.extract_proton_number">[docs]</a>
+<a class="viewcode-back" href="../../hsr.html#hsr.utils.extract_proton_number">[docs]</a>
 <span class="k">def</span> <span class="nf">extract_proton_number</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">atom</span><span class="o">.</span><span class="n">GetAtomicNum</span><span class="p">()</span></div>
-
-
-<span class="c1"># Difference between the mass of the atom and the number of protons (aka, number of neutrons)</span>
-<div class="viewcode-block" id="extract_neutron_difference">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.extract_neutron_difference">[docs]</a>
-<span class="k">def</span> <span class="nf">extract_neutron_difference</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">GetMass</span><span class="p">()))</span> <span class="o">-</span> <span class="n">atom</span><span class="o">.</span><span class="n">GetAtomicNum</span><span class="p">()</span></div>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">GetAtomicNum</span><span class="p">())</span></div>
 
 
 <span class="c1"># Difference between the number of neutrons of the current atom</span>
 <span class="c1"># and the number of neutrons of the most common isotope of the element (stored)</span>
 <div class="viewcode-block" id="extract_neutron_difference_from_common_isotope">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.extract_neutron_difference_from_common_isotope">[docs]</a>
+<a class="viewcode-back" href="../../hsr.html#hsr.utils.extract_neutron_difference_from_common_isotope">[docs]</a>
 <span class="k">def</span> <span class="nf">extract_neutron_difference_from_common_isotope</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
     <span class="n">n_neutrons</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">GetMass</span><span class="p">()))</span> <span class="o">-</span> <span class="n">atom</span><span class="o">.</span><span class="n">GetAtomicNum</span><span class="p">()</span>
     <span class="n">n_neutrons_most_common</span> <span class="o">=</span> <span class="n">N_NEUTRONS</span><span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">GetSymbol</span><span class="p">()]</span>
-    <span class="k">return</span> <span class="n">n_neutrons</span> <span class="o">-</span> <span class="n">n_neutrons_most_common</span></div>
+    <span class="n">raw_value</span><span class="o">=</span> <span class="n">n_neutrons</span> <span class="o">-</span> <span class="n">n_neutrons_most_common</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">raw_value</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="extract_formal_charge">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.extract_formal_charge">[docs]</a>
+<a class="viewcode-back" href="../../hsr.html#hsr.utils.extract_formal_charge">[docs]</a>
 <span class="k">def</span> <span class="nf">extract_formal_charge</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">atom</span><span class="o">.</span><span class="n">GetFormalCharge</span><span class="p">()</span></div>
 
 
-<span class="c1">### Re-scaling functions ###</span>
 
-<span class="c1">## Tapering functions</span>
-<div class="viewcode-block" id="taper_p">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.taper_p">[docs]</a>
-<span class="k">def</span> <span class="nf">taper_p</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="taper_n">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.taper_n">[docs]</a>
-<span class="k">def</span> <span class="nf">taper_n</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="taper_c">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.taper_c">[docs]</a>
-<span class="k">def</span> <span class="nf">taper_c</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span>  <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> </div>
-
-
-<div class="viewcode-block" id="normalize_feature_by_coordinate_range">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.normalize_feature_by_coordinate_range">[docs]</a>
-<span class="k">def</span> <span class="nf">normalize_feature_by_coordinate_range</span><span class="p">(</span><span class="n">feature_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Normalizes the given feature using the range of the coordinates.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">coordinates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Coordinates must be provided and should not be empty!&quot;</span><span class="p">)</span>
-    
-    <span class="n">max_coord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
-    <span class="n">min_coord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
-    
-    <span class="n">feature_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">feature_data</span><span class="p">)</span>
-    <span class="n">feature_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">feature_data</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="n">feature_min</span> <span class="o">!=</span> <span class="n">feature_max</span><span class="p">:</span>
-        <span class="n">normalized_feature</span> <span class="o">=</span> <span class="p">(</span><span class="n">feature_data</span> <span class="o">-</span> <span class="n">feature_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">feature_max</span> <span class="o">-</span> <span class="n">feature_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_coord</span> <span class="o">-</span> <span class="n">min_coord</span><span class="p">)</span> <span class="o">+</span> <span class="n">min_coord</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">normalized_feature</span> <span class="o">=</span> <span class="n">feature_data</span>
-    <span class="k">return</span> <span class="n">normalized_feature</span></div>
-
-
-<div class="viewcode-block" id="normalize_feature_by_selected_axis">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.normalize_feature_by_selected_axis">[docs]</a>
-<span class="k">def</span> <span class="nf">normalize_feature_by_selected_axis</span><span class="p">(</span><span class="n">feature_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">axis_choice</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;smallest&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Normalizes the given feature using the range of a specific axis (largest, smallest, or intermediate) of the coordinates.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">coordinates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Coordinates must be provided and should not be empty!&quot;</span><span class="p">)</span>
-    
-    <span class="n">ranges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ptp</span><span class="p">(</span><span class="n">coordinates</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">axis</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="n">axis_choice</span> <span class="o">==</span> <span class="s2">&quot;smallest&quot;</span><span class="p">:</span>
-        <span class="n">axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">ranges</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">axis_choice</span> <span class="o">==</span> <span class="s2">&quot;largest&quot;</span><span class="p">:</span>
-        <span class="n">axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">ranges</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">axis_choice</span> <span class="o">==</span> <span class="s2">&quot;intermediate&quot;</span><span class="p">:</span>
-        <span class="n">axis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">ranges</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid axis_choice. Choose from &#39;smallest&#39;, &#39;largest&#39;, or &#39;intermediate&#39;.&quot;</span><span class="p">)</span>
-
-    <span class="n">max_coord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[:,</span> <span class="n">axis</span><span class="p">])</span>
-    <span class="n">min_coord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[:,</span> <span class="n">axis</span><span class="p">])</span>
-
-    <span class="n">feature_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">feature_data</span><span class="p">)</span>
-    <span class="n">feature_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">feature_data</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">feature_min</span> <span class="o">!=</span> <span class="n">feature_max</span><span class="p">:</span>
-        <span class="n">normalized_feature</span> <span class="o">=</span> <span class="p">(</span><span class="n">feature_data</span> <span class="o">-</span> <span class="n">feature_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">feature_max</span> <span class="o">-</span> <span class="n">feature_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_coord</span> <span class="o">-</span> <span class="n">min_coord</span><span class="p">)</span> <span class="o">+</span> <span class="n">min_coord</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">normalized_feature</span> <span class="o">=</span> <span class="n">feature_data</span>
-    <span class="k">return</span> <span class="n">normalized_feature</span></div>
-
-
-<span class="c1">###### FINGERPRINT ########</span>
+<span class="c1">###### FINGERPRINT utils ########</span>
 
 <div class="viewcode-block" id="compute_scaling_factor">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.compute_scaling_factor">[docs]</a>
+<a class="viewcode-back" href="../../hsr.html#hsr.utils.compute_scaling_factor">[docs]</a>
 <span class="k">def</span> <span class="nf">compute_scaling_factor</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the largest distance between the centroid and the molecule data points</span>
@@ -205,7 +121,7 @@
 
 
 <div class="viewcode-block" id="compute_scaling_matrix">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.utils.compute_scaling_matrix">[docs]</a>
+<a class="viewcode-back" href="../../hsr.html#hsr.utils.compute_scaling_matrix">[docs]</a>
 <span class="k">def</span> <span class="nf">compute_scaling_matrix</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes a diagonal scaling matrix with the maximum absolute values </span>
@@ -220,15 +136,41 @@
 <span class="c1">#### DEFAULTS #####</span>
 
 <span class="n">DEFAULT_FEATURES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;protons&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">extract_proton_number</span><span class="p">,</span> <span class="n">taper_p</span><span class="p">],</span>
-    <span class="s1">&#39;delta_neutrons&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">extract_neutron_difference_from_common_isotope</span><span class="p">,</span> <span class="n">taper_n</span><span class="p">],</span>
-    <span class="s1">&#39;formal_charges&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">extract_formal_charge</span><span class="p">,</span> <span class="n">taper_c</span><span class="p">]</span>
+    <span class="s1">&#39;protons&#39;</span> <span class="p">:</span> <span class="n">extract_proton_number</span><span class="p">,</span>
+    <span class="s1">&#39;delta_neutrons&#39;</span> <span class="p">:</span> <span class="n">extract_neutron_difference_from_common_isotope</span><span class="p">,</span>
+    <span class="s1">&#39;formal_charges&#39;</span> <span class="p">:</span> <span class="n">extract_formal_charge</span>
     <span class="p">}</span>
 
+<span class="n">PROTON_FEATURES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;protons&#39;</span> <span class="p">:</span> <span class="n">extract_proton_number</span><span class="p">,</span>
+    <span class="p">}</span>
+    
+<span class="c1">### EXAMPLE FEATURES ###</span>
+
+<div class="viewcode-block" id="proton_number">
+<a class="viewcode-back" href="../../hsr.html#hsr.utils.proton_number">[docs]</a>
+<span class="k">def</span> <span class="nf">proton_number</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">atom</span><span class="o">.</span><span class="n">GetAtomicNum</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="neutron_difference">
+<a class="viewcode-back" href="../../hsr.html#hsr.utils.neutron_difference">[docs]</a>
+<span class="k">def</span> <span class="nf">neutron_difference</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+    <span class="n">n_neutrons</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">GetMass</span><span class="p">()))</span> <span class="o">-</span> <span class="n">atom</span><span class="o">.</span><span class="n">GetAtomicNum</span><span class="p">()</span>
+    <span class="n">n_neutrons_most_common</span> <span class="o">=</span> <span class="n">N_NEUTRONS</span><span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">GetSymbol</span><span class="p">()]</span>
+    <span class="k">return</span> <span class="n">n_neutrons</span> <span class="o">-</span> <span class="n">n_neutrons_most_common</span></div>
+
+
+<div class="viewcode-block" id="formal_charge">
+<a class="viewcode-back" href="../../hsr.html#hsr.utils.formal_charge">[docs]</a>
+<span class="k">def</span> <span class="nf">formal_charge</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">atom</span><span class="o">.</span><span class="n">GetFormalCharge</span><span class="p">()</span></div>
+
+
 <span class="n">EXAMPLE_FEATURES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;protons&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">extract_proton_number</span><span class="p">,],</span>
-    <span class="s1">&#39;neutrons&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">extract_neutron_difference_from_common_isotope</span><span class="p">,],</span>
-    <span class="s1">&#39;charge&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">extract_formal_charge</span><span class="p">,]</span>
+    <span class="s1">&#39;protons&#39;</span> <span class="p">:</span> <span class="n">proton_number</span><span class="p">,</span>
+    <span class="s1">&#39;neutrons&#39;</span> <span class="p">:</span> <span class="n">neutron_difference</span><span class="p">,</span>
+    <span class="s1">&#39;charge&#39;</span> <span class="p">:</span> <span class="n">formal_charge</span>
     <span class="p">}</span>
 
 <span class="c1">### CONSTANTS ### </span>

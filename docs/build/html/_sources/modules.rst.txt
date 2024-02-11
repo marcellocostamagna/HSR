@@ -1,7 +1,7 @@
-nd_sim
-======
+Hyper Shape Recognition (HSR)
+==============================
 
 .. toctree::
    :maxdepth: 4
 
-   nd_sim
+   hsr

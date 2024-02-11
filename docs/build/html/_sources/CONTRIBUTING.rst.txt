@@ -1,16 +1,16 @@
-Contributing to ND_sim
+Contributing to HSR
 ======================
 
-We’re thrilled that you’re interested in contributing to ND_sim! Your
-contributions are essential for keeping ND_sim robust and valuable for
+We’re thrilled that you’re interested in contributing to HSR! Your
+contributions are essential for keeping HSR robust and valuable for
 everyone. Whether you’re reporting issues, suggesting improvements, or
 submitting code changes, every contribution is appreciated.
 
 Reporting Issues and Suggesting Improvements
 --------------------------------------------
 
-If you encounter bugs, errors, or areas of improvement in ND_sim, we
-encourage you to open an issue in our `repository <https://github.com/marcellocostamagna/ND_sim>`_. When creating an
+If you encounter bugs, errors, or areas of improvement in HSR, we
+encourage you to open an issue in our `repository <https://github.com/marcellocostamagna/HSR>`_. When creating an
 issue, please provide:
 
 -  A clear and descriptive title.
@@ -19,15 +19,15 @@ issue, please provide:
 -  Any additional context or screenshots that might be helpful.
 
 Your reports are invaluable in identifying and fixing problems and in
-making ND_sim more efficient.
+making HSR more efficient.
 
 Contributing Code or Documentation
 ----------------------------------
 
-If you’re looking to contribute code or documentation to ND_sim, the
+If you’re looking to contribute code or documentation to HSR, the
 typical process involves:
 
-1. **Forking the Repository**: Start by forking the ND_sim repository to
+1. **Forking the Repository**: Start by forking the HSR repository to
    your GitHub account. This creates your own copy of the project where
    you can make your changes.
 
@@ -40,12 +40,12 @@ typical process involves:
    issues.
 
 4. **Creating a Pull Request**: After you’ve made your changes, create a
-   pull request from your forked repository to the main ND_sim
+   pull request from your forked repository to the main HSR
    repository. In your pull request, provide a clear description of the
    changes and any other relevant information.
 
 5. **Review Process**: Once your pull request is submitted, it will be
-   reviewed by the maintainers of ND_sim. There might be a discussion
+   reviewed by the maintainers of HSR. There might be a discussion
    about the changes. Be open to feedback and willing to make
    adjustments if needed.
 
@@ -68,5 +68,5 @@ Questions or Need Help?
 If you have questions or need help with the contribution process, feel
 free to reach out to the maintainers or open an issue for discussion.
 (TODO: add contacts information)
-Thank you for contributing to ND_sim, and we look forward to your
+Thank you for contributing to HSR, and we look forward to your
 contributions! 

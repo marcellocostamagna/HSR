@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nd_sim.pre_processing &mdash; ND_sim  documentation</title>
+  <title>hsr.pre_processing &mdash; HSR  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            ND_sim
+            HSR
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -43,7 +43,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">nd_sim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../detailed_overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing to ND_sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CONTRIBUTING.html">Contributing to HSR</a></li>
 </ul>
 
         </div>
@@ -52,7 +52,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">ND_sim</a>
+          <a href="../../index.html">HSR</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -61,7 +61,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">nd_sim.pre_processing</li>
+      <li class="breadcrumb-item active">hsr.pre_processing</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -70,25 +70,65 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for nd_sim.pre_processing</h1><div class="highlight"><pre>
-<span></span><span class="c1"># ND_sim</span>
-<span class="c1"># This file is part of ND_sim, which is licensed under the</span>
+  <h1>Source code for hsr.pre_processing</h1><div class="highlight"><pre>
+<span></span><span class="c1"># HSR: Hyper-Shape Recognition</span>
+<span class="c1"># This file is part of HSR, which is licensed under the</span>
 <span class="c1"># GNU Lesser General Public License v3.0 (or any later version).</span>
 <span class="c1"># See the LICENSE file for more details.</span>
 
-<span class="c1"># Script to collect and pre-process molecules from SDF files and </span>
+<span class="c1"># Script to collect and pre-process molecules from files and </span>
 <span class="c1"># convert them in datastructures to compute their similarity based on </span>
-<span class="c1"># a PCA method considering coordinates, protons, neutrons and charges of every atom.</span>
+<span class="c1"># PCA method considering coordinates and additional features.</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">rdkit</span> <span class="kn">import</span> <span class="n">Chem</span>
-<span class="kn">from</span> <span class="nn">nd_sim.utils</span> <span class="kn">import</span> <span class="n">DEFAULT_FEATURES</span>
+<span class="kn">from</span> <span class="nn">rdkit.Chem.rdmolfiles</span> <span class="kn">import</span> <span class="n">MolFromMol2File</span><span class="p">,</span> <span class="n">MolFromMolFile</span><span class="p">,</span> <span class="n">MolFromPDBFile</span><span class="p">,</span> <span class="n">MolFromXYZFile</span><span class="p">,</span> <span class="n">SDMolSupplier</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="read_mol_from_file">
+<a class="viewcode-back" href="../../hsr.html#hsr.pre_processing.read_mol_from_file">[docs]</a>
+<span class="k">def</span> <span class="nf">read_mol_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sanitize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    General reader for molecules from files.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path : str </span>
+<span class="sd">        Path to the file.</span>
+<span class="sd">    removeHs : bool, optional</span>
+<span class="sd">        Whether to remove hydrogens. Defaults to False.</span>
+<span class="sd">    sanitize : bool, optional</span>
+<span class="sd">        Whether to sanitize the molecules. Defaults to False.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    rdkit.Chem.rdchem.Mol</span>
+<span class="sd">        A RDKit molecule object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">extension</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">extension</span> <span class="o">==</span> <span class="s1">&#39;mol&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">MolFromMolFile</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="n">removeHs</span><span class="p">,</span> <span class="n">sanitize</span><span class="o">=</span><span class="n">sanitize</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s1">&#39;mol2&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">MolFromMol2File</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="n">removeHs</span><span class="p">,</span> <span class="n">sanitize</span><span class="o">=</span><span class="n">sanitize</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s1">&#39;pdb&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">MolFromPDBFile</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="n">removeHs</span><span class="p">,</span> <span class="n">sanitize</span><span class="o">=</span><span class="n">sanitize</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s1">&#39;xyz&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">MolFromXYZFile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s1">&#39;sdf&#39;</span><span class="p">:</span>
+        <span class="n">suppl</span> <span class="o">=</span> <span class="n">Chem</span><span class="o">.</span><span class="n">SDMolSupplier</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="n">removeHs</span><span class="p">,</span> <span class="n">sanitize</span><span class="o">=</span><span class="n">sanitize</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="n">suppl</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported file format: </span><span class="si">{</span><span class="n">extension</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+      
 
 <div class="viewcode-block" id="load_molecules_from_sdf">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.pre_processing.load_molecules_from_sdf">[docs]</a>
+<a class="viewcode-back" href="../../hsr.html#hsr.pre_processing.load_molecules_from_sdf">[docs]</a>
 <span class="k">def</span> <span class="nf">load_molecules_from_sdf</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sanitize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load molecules from an SDF file.</span>
+<span class="sd">    Load a list of molecules from an SDF file.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -110,17 +150,22 @@
 
 
 <div class="viewcode-block" id="molecule_to_ndarray">
-<a class="viewcode-back" href="../../nd_sim.html#nd_sim.pre_processing.molecule_to_ndarray">[docs]</a>
+<a class="viewcode-back" href="../../hsr.html#hsr.pre_processing.molecule_to_ndarray">[docs]</a>
 <span class="k">def</span> <span class="nf">molecule_to_ndarray</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">DEFAULT_FEATURES</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate a numpy array representing the given molecule in N dimensions.</span>
+<span class="sd">    </span>
+<span class="sd">    This function converts a molecule into an N-dimensional numpy array based on specified features. </span>
+<span class="sd">    Each feature is computed using a function defined in the &#39;features&#39; dictionary.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    molecule : rdkit.Chem.rdchem.Mol</span>
 <span class="sd">        The input RDKit molecule object.</span>
-<span class="sd">    features : dict, optional</span>
-<span class="sd">        Dictionary where keys are feature names and values are lists of functions to compute the feature.</span>
+<span class="sd">    features : dict[str, callable], optional</span>
+<span class="sd">        A dictionary where each key is a feature name (str) and the value is a callable </span>
+<span class="sd">        function to compute that feature. The function takes an RDKit atom object as input </span>
+<span class="sd">        and returns a feature value (a numeric type).</span>
 <span class="sd">        Defaults to DEFAULT_FEATURES.</span>
 <span class="sd">    removeHs : : bool, optional</span>
 <span class="sd">        If True, hydrogen atoms will not be included in the array representation.</span>
@@ -147,9 +192,8 @@
         <span class="n">molecule_info</span><span class="p">[</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">position</span><span class="o">.</span><span class="n">z</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="n">features</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">funcs</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">raw_value</span> <span class="o">=</span> <span class="n">funcs</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">atom</span><span class="p">)</span>
-                <span class="n">value</span> <span class="o">=</span> <span class="n">funcs</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">raw_value</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">funcs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">raw_value</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
                 <span class="n">molecule_info</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
     <span class="n">arrays</span> <span class="o">=</span> <span class="p">[]</span>

@@ -1,5 +1,5 @@
-# ND_sim
-# This file is part of ND_sim, which is licensed under the
+# HSR: Hyper-Shape Recognition
+# This file is part of HSR, which is licensed under the
 # GNU Lesser General Public License v3.0 (or any later version).
 # See the LICENSE file for more details.
 
@@ -12,9 +12,6 @@ import numpy as np
 ### Fetaures functions ###
 def extract_proton_number(atom):
     return np.sqrt(atom.GetAtomicNum())
-    # return np.log10(atom.GetAtomicNum())
-    # return np.cbrt(atom.GetAtomicNum())
-    # return atom.GetAtomicNum()
 
 # Difference between the number of neutrons of the current atom
 # and the number of neutrons of the most common isotope of the element (stored)
@@ -56,6 +53,9 @@ DEFAULT_FEATURES = {
     'formal_charges' : extract_formal_charge
     }
 
+PROTON_FEATURES = {
+    'protons' : extract_proton_number,
+    }
     
 ### EXAMPLE FEATURES ###
 

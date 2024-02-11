@@ -1,5 +1,5 @@
-# ND_sim
-# This file is part of ND_sim, which is licensed under the
+# HSR: Hyper-Shape Recognition
+# This file is part of HSR, which is licensed under the
 # GNU Lesser General Public License v3.0 (or any later version).
 # See the LICENSE file for more details.
 
@@ -9,7 +9,7 @@
 import numpy as np
 from scipy.stats import skew
 
-def compute_pca_using_covariance(original_data, chirality=False):
+def compute_pca_using_covariance(original_data, chirality=False, return_axes=False):
     """    
     Perform Principal Component Analysis (PCA) using eigendecomposition of the covariance matrix.
 
@@ -30,12 +30,24 @@ def compute_pca_using_covariance(original_data, chirality=False):
         If set to True, the function ensures that the determinant of the transformation 
         matrix is positive, allowing for the distinction of chiral molecules. 
         Default is False.
+    
+    return_axes : bool, optional
+        If True, returns the principal axes (eigenvectors) in addition to the transformed data. 
+        Default is False.
 
     Returns
     -------
     transformed_data : numpy.ndarray
         The dataset after PCA transformation. This data is aligned to the principal components 
         and is of the same shape as the original data.
+    
+    dimensionality : int
+        The number of significant dimensions in the transformed data. 
+        Only returnd if chirality is True.
+    
+    eigenvectors : numpy.ndarray, optional
+        Only returned if return_axes is True. The principal axes of the transformation, represented 
+        as eigenvectors. Each column corresponds to an eigenvector.
     """
     covariance_matrix = np.cov(original_data, rowvar=False, ddof=0,) 
     
@@ -59,15 +71,21 @@ def compute_pca_using_covariance(original_data, chirality=False):
             eigenvectors[:, best_eigenvector_to_flip] *= -1
     
         transformed_data = np.dot(original_data, eigenvectors)
-        
-        return transformed_data, len(significant_indices)
+        dimesnionality = len(significant_indices)
+        if return_axes:
+            return transformed_data, dimesnionality, eigenvectors
+        else:
+            return transformed_data, dimesnionality
 
     adjusted_eigenvectors, n_changes, best_eigenvector_to_flip  = adjust_eigenvector_signs(original_data, eigenvectors[:, significant_indices], chirality) 
     eigenvectors[:, significant_indices] = adjusted_eigenvectors
     
     transformed_data = np.dot(original_data, eigenvectors)
 
-    return  transformed_data
+    if return_axes:
+        return transformed_data, eigenvectors
+    else:
+        return  transformed_data
 
 def adjust_eigenvector_signs(original_data, eigenvectors, chirality=False, tolerance= 1e-4):
     """
@@ -123,7 +141,7 @@ def adjust_eigenvector_signs(original_data, eigenvectors, chirality=False, toler
         while True:
             # Find the points with maximum absolute coordinate among the remaining ones
             mask_max = np.isclose(np.abs(projections[remaining_indices]), max_abs_coordinate, atol=tolerance)
-            max_indices = remaining_indices[mask_max]  # indices of points with maximum absolute coordinate
+            max_indices = remaining_indices[mask_max]  
             
             # If all points with the maximum absolute coordinate have the same sign, use them for a decision
             unique_signs = np.sign(projections[max_indices])

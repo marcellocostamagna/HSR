@@ -1,17 +1,16 @@
-# ND_sim
-# This file is part of ND_sim, which is licensed under the
+# HSR: Hyper-Shape Recognition
+# This file is part of HSR, which is licensed under the
 # GNU Lesser General Public License v3.0 (or any later version).
 # See the LICENSE file for more details.
 
-# Script that provides the fingerprints of the molecules
+# Script that provides the fingerprints of the molecules for similarity comparison
 
 import numpy as np
 from scipy.spatial import distance
 from scipy.stats import skew
-from nd_sim.pre_processing import *
-from nd_sim.pca_transform import *
-from nd_sim.utils import *
-
+from .pre_processing import *
+from .pca_transform import *
+from .utils import *
 
 def generate_reference_points(dimensionality):
     """

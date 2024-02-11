@@ -46,17 +46,14 @@ obj = [CYLINDER, 0.0, 0.0, 0.0,   x, 0.0, 0.0, w, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,
        CONE, 0.0,   y, 0.0, 0.0, h+y, 0.0, d, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 
        CONE, 0.0, 0.0,   z, 0.0, 0.0, h+z, d, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0]
 
-x_offset = x + h + 0.1  # Adjust label position beyond the tip of the cones
-y_offset = y + h + 0.1  # Adjust label position beyond the tip of the cones
-z_offset = z + h + 0.1  # Adjust label position beyond the tip of the cones
+x_offset = x + h + 0.1  
+y_offset = y + h + 0.1  
+z_offset = z + h + 0.1  
 cmd.pseudoatom('label_x', pos=[x_offset, 0, 0], label='X')
 cmd.pseudoatom('label_y', pos=[0, y_offset, 0], label='Y')
 cmd.pseudoatom('label_z', pos=[0, 0, z_offset], label='Z')
 
 
 cmd.load_cgo(obj, 'axes')
-
-# Save the session if needed
-cmd.save(f'{cwd}/experiments/Figure_2/visualization_session.pse')
 
 

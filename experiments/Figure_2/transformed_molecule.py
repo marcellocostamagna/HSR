@@ -1,13 +1,12 @@
-
 import numpy as np
 import os
 from hsr.pre_processing import *
 from hsr.pca_transform import *
 import pymol
 from pymol import cmd
-import rdkit
-from rdkit.Chem import AllChem
 from rdkit.Geometry import Point3D
+import pymol
+from pymol import cmd
 
 cwd = os.getcwd()
 
@@ -45,20 +44,14 @@ writer = Chem.SDWriter(f'{cwd}/experiments/transformed_molecule.sdf')
 writer.write(new_molecule)
 writer.close()
 
-
-
-import pymol
-from pymol import cmd, cgo
-
 # Initialize PyMOL
 pymol.finish_launching()
 
 # Load the molecule
-molecule_path = f'{cwd}/experiments/transformed_molecule.sdf'
+molecule_path = f'{cwd}/experiments/Figure2/transformed_molecule.sdf'
 cmd.load(molecule_path, 'molecule')
 
 # create_axes()
-
 from pymol.cgo import *
 from pymol import cmd
 
@@ -122,7 +115,7 @@ def create_dotted_line(start, end, color=[1.0, 1.0, 1.0], segments=10):
         # Interpolate between start and end points
         intermediate_point = [start[j] + (end[j] - start[j]) * fraction for j in range(3)]
         next_intermediate_point = [start[j] + (end[j] - start[j]) * next_fraction for j in range(3)]
-        if i % 2 == 0:  # Only add cylinder for even segments to create gaps
+        if i % 2 == 0:  
             obj.extend([
                 CYLINDER,
                 intermediate_point[0], intermediate_point[1], intermediate_point[2],
@@ -146,7 +139,3 @@ cmd.load_cgo(dotted_line_obj_3, 'dotted_line_3')
 
 
 cmd.load_cgo(obj, 'axes')
-
-# Save the session if needed
-cmd.save(f'{cwd}/experiments/Figure_2/visualization_session.pse')
-

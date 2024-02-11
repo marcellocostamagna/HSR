@@ -25,11 +25,10 @@ def generate_all_single_deuterium_variants(molecule):
     return modified_molecules
 
 cwd = os.getcwd()
-# PRE-PROCESSING
-# List of molecules from SDF file
-molecules = load_molecules_from_sdf(f'{cwd}/sd_data/change_position_dependency.sdf', removeHs=False, sanitize=False)
 
-original_molecule = molecules[0]
+print(f'Position dependency of feature change')
+
+original_molecule = load_molecules_from_sdf(f'{cwd}/experiments/PositionDependency/molecule.sdf', removeHs=False, sanitize=False)[0]
 
 modified_molecules = generate_all_single_deuterium_variants(original_molecule)
 

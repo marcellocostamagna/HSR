@@ -12,7 +12,7 @@ import os
 cwd = os.getcwd()
 
 ### INORGANIC OPTICAL ISOMERS ###
-molecules = load_molecules_from_sdf(f'{cwd}/sd_data/lamda_delta_isomerism_1.sdf', removeHs=False, sanitize=False)
+molecules = load_molecules_from_sdf(f'{cwd}/experiments/Chirality/lambda_delta_isomers.sdf', removeHs=False, sanitize=False)
 
 ### ROTATE MOLECULES ###
 rotated_molecules = []
@@ -23,12 +23,14 @@ for molecule in molecules:
     mol = rotate_molecule(molecule, angle1, angle2, angle3)
     rotated_molecules.append(mol)
     
-fingerprints = [generate_fingerprint_from_molecule(molecule, DEFAULT_FEATURES, scaling='matrix', chirality=True)[0] for molecule in rotated_molecules]
+representations = [None, DEFAULT_FEATURES]
 
-# COMPARE ALL PAIRS OF MOLECULES
-# Compute similarity between all pairs of fingerprints
-n_molecules = len(fingerprints)
-for i in range(n_molecules):
-    for j in range(i+1, n_molecules):
-        similarity = compute_similarity_score(fingerprints[i], fingerprints[j])
-        print(f"{i+1}-{j+1}: {similarity:.4f}")
+print(f'\nHSR similarity of inorganic enantiomers: \n')
+for representation in representations:
+    fingerprints = [generate_fingerprint_from_molecule(molecule, representation, scaling='matrix', chirality=True)[0] for molecule in rotated_molecules]
+
+    similarity = compute_similarity_score(fingerprints[0], fingerprints[1])
+    if representation is None:
+        print(f"HSR (3D): {similarity:.4f}")
+    else:
+        print(f"HSR (6D): {similarity:.4f}")

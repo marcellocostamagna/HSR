@@ -9,15 +9,9 @@ Welcome to HSR's documentation!
 Hyper Shape recognition (HSR): a generalised moment-based molecular similarity framework
 -----------------------------------------------------------------------------------------
 
-HSR is a versatile similarity measure tool applicable to a wide range of chemical systems. 
-It is developed to enable fast 3D similarity measures across diverse chemicals and molecules. 
-Based on the Ultrafast Shape Recognition (USR) method, HSR enhances robustness and versatility 
-compared to similar previous methods.
-
-In addition to considering the 3D coordinates of molecules, HSR incorporates additional 
-features for each atom, making it a multidimensional similarity approach. While users 
-have the flexibility to modify these features, the default configuration utilizes information 
-based on the protons, neutrons, and formal charges of each atom.
+HSR is a versatile, moment-based similarity measure tailored for three-dimensional (3D) chemical representations 
+annotated with atomic features. It enhances the robustness and versatility of the Ultrafast Shape Recognition (USR) 
+method by incorporating multidimensional features for each atom, such as protons, neutrons, and formal charges.
 
 Getting Started
 ---------------
@@ -25,33 +19,53 @@ Getting Started
 Installing HSR
 ~~~~~~~~~~~~~~~~
 
-HSR can be easily installed using pip or conda. Choose the method that best suits your environment:
+You can install HSR using either pip or conda:
 
-Using pip:
-
-.. code-block:: bash 
+.. code-block:: bash
 
     pip install hsr
 
-Using conda:
+or 
 
-.. code-block:: bash
+.. code-block:: bash 
 
     conda install hsr -c conda-forge
 
-
-Understanding HSR
+Build from source
 --------------------
 
-Although the use of HSR can be pretty straightforward:
+Clone the `HSR repository <https://github.com/marcellocostamagna/HSR>`_ on your machine. Move inside it and create the conda environment:
 
 
 .. code-block:: bash
 
-    hsr -s mol1.sdf mol2.sdf
+    conda env create -f environment.yml
+    conda activate HSR_devel
 
-Some of the logic behind it can be complex at first.
-To learn more about how HSR works and its underlying methodology, see the :doc:`overview of the method <detailed_overview>`.
+Verify the correct creation of the environment by running:
+
+.. code-block:: bash
+
+    pytest
+
+To use HSR from CLI run:
+
+.. code-block:: bash
+
+    python -m hsr.hsr_cli -h
+
+If HSR is installed with pip or conda, the above command is replaced by the simple use of ``hsr``.
+
+Basic Usage
+------------
+
+Run the folowing command to get help in using HSR from CLI:
+
+.. code-block:: bash
+
+    hsr -h
+
+For a detailed overview of HSR's methodology check our `documentation <https://marcellocostamagna.github.io/HSR/>`_.
 
 Licensing
 ---------

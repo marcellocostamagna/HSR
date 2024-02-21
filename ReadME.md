@@ -1,6 +1,6 @@
-# Hyper Shape recognition (HSR): A Versatile Similarity Measure for Chemical Systems
+# Hyper Shape recognition (HSR): a general framework for moment-based similarity measures
 
- HSR is a versatile tool for measuring similarity across a wide range of chemical systems. It enhances the robustness and versatility of the Ultrafast Shape Recognition (USR) method by incorporating multidimensional features for each atom, such as protons, neutrons, and formal charges.
+ HSR is a versatile, moment-based similarity measure tailored for three-dimensional (3D) chemical representations annotated with atomic features. It enhances the robustness and versatility of the Ultrafast Shape Recognition (USR) method by incorporating multidimensional features for each atom, such as protons, neutrons, and formal charges.
 
 ## Getting Started
 
@@ -17,19 +17,33 @@ or
 conda install hsr -c conda-forge
 ```
 
+### Build from source
+
+Clone this repository on your machine. Move inside it and create the conda environment:
+
+```bash
+conda env create -f environment.yml
+conda activate HSR_devel
+```
+Verify the correct creation of the environment by running:
+
+```bash
+pytest
+```
+To use HSR from CLI you can run:
+```bash
+python -m hsr.hsr_cli 
+```
+If HSR is installed with pip or conda, the above command is replace by the simple use of ``hsr``
+
 ### Basic Usage
 
-Using HSR is straightforward:
+Run the folowing command to get help in using HSR from CLI:
 
-```python
-import hsr
-
-mol1 = load_molecules_from_sdf('mol1.sdf')
-mol2 = load_molecules_from_sdf('mol2.sdf')
-
-similarity = compute_similarity(mol1, mol2)
-
+```bash
+hsr -h
 ```
+
 For a detailed overview of HSR's methodology check our [documentation](https://marcellocostamagna.github.io/HSR/).
 
 

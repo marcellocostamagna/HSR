@@ -33,8 +33,9 @@ def main():
     parser.add_argument('-chirality', action='store_true', help='Consider chirality')
     parser.add_argument('-features', default='DEFAULT_FEATURES', type=parse_dict_or_none,
                         help="Defines the use of additional features for the comparison. "
-                             "Available options: '6D' for 6D representation (default), 'None' for only spatial coordinates. "
-                             "For different features, it is necessary to define new ones in the package.")
+                             "Available options: DEFAULT_FEATURES for 6D representation (default), 'None' for only spatial coordinates, and"
+                             "PROTON_FEATURES for 4D representation including proton feature besides spatial coordinates. "
+                             "For different features, it is necessary to define new ones in the package (see documentation).")
     parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {__version__}',
                         help='Show the version of the HSR package and exit.')
 

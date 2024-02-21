@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Overview &mdash; HSR  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -44,7 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="modules.html">nd_sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Hyper Shape Recognition (HSR)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#initial-data-representation">Initial Data Representation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
@@ -52,7 +54,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#similarity-measurement">Similarity Measurement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-new-features">Adding New Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#chirality">Chirality</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
 </ul>
 </li>
@@ -86,18 +87,18 @@
   <section id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
 <p>HSR represents an approach to molecular similarity assessment,
-leveraging a multidimensional array to encapsulate both spatial and feature-based characteristics of molecules.
+leveraging a multidimensional array to encapsulate both spatial and atomic features of molecules.
 The method is grounded in a robust and deterministic process, ensuring precision and consistency in similarity measurements.</p>
 <section id="initial-data-representation">
 <h2>Initial Data Representation<a class="headerlink" href="#initial-data-representation" title="Link to this heading"></a></h2>
 <ul>
-<li><p>Molecules are represented in an N-dimensional array, where the first three dimensions correspond to 3-D spatial coordinates (<a class="reference internal" href="hsr.html#hsr.pre_processing.molecule_to_ndarray" title="hsr.pre_processing.molecule_to_ndarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">molecule_to_ndarray</span></code></a>).</p></li>
+<li><p>Molecules are represented in an N-dimensional array, then called hyper shapes, where the first three dimensions correspond to 3D spatial coordinates (<a class="reference internal" href="hsr.html#hsr.pre_processing.molecule_to_ndarray" title="hsr.pre_processing.molecule_to_ndarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">molecule_to_ndarray</span></code></a>).</p></li>
 <li><p>Additional features are integrated, enhancing the molecular description. In the default setting (<a class="reference internal" href="hsr.html#module-hsr.utils" title="hsr.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utils</span></code></a>), these include:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Proton count, adjusted using a square root tapering function.</p></li>
-<li><p>Neutron count difference from the most common isotope, also tapered by a square root function (with sign adjustment).</p></li>
-<li><p>Formal charge, incorporated without tapering.</p></li>
+<li><p>The squre root of the <strong>proton</strong> count.</p></li>
+<li><p>The square root of number of <strong>neutrons</strong> and the number of neutrons of the most common isotope.</p></li>
+<li><p>Formal charge (<strong>electrons</strong> information).</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -106,7 +107,7 @@ The method is grounded in a robust and deterministic process, ensuring precision
 <section id="principal-component-analysis-pca">
 <h2>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>The method applies PCA to the N-dimensional (6-D in default mode) molecular representation, extracting principal components of the molecule in the N-D space (<a class="reference internal" href="hsr.html#hsr.pca_transform.compute_pca_using_covariance" title="hsr.pca_transform.compute_pca_using_covariance"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance</span></code></a>).</p></li>
+<li><p>The method applies PCA to the N-dimensional (6D in default mode) molecular representation, extracting principal components of the hyper shape (<a class="reference internal" href="hsr.html#hsr.pca_transform.compute_pca_using_covariance" title="hsr.pca_transform.compute_pca_using_covariance"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance</span></code></a>).</p></li>
 <li><p>Orientation of eigenvectors is determined rigorously. The sign of each eigenvector is set based on the maximum projection of the data onto that eigenvector. This ensures a deterministic and unambiguous assignment of orientation (<a class="reference internal" href="hsr.html#hsr.pca_transform.adjust_eigenvector_signs" title="hsr.pca_transform.adjust_eigenvector_signs"><code class="xref py py-func docutils literal notranslate"><span class="pre">adjust_eigenvector_signs</span></code></a>).</p></li>
 </ul>
 </section>
@@ -122,68 +123,38 @@ The method is grounded in a robust and deterministic process, ensuring precision
 <section id="similarity-measurement">
 <h2>Similarity Measurement<a class="headerlink" href="#similarity-measurement" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Molecular similarity is quantified using the inverse Manhattan distance between the fingerprints of two molecules (<a class="reference internal" href="hsr.html#module-hsr.similarity" title="hsr.similarity"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Similarity</span></code></a>). This metric provides a straightforward yet effective measure of similarity, capturing both spatial and feature-based nuances.</p></li>
+<li><p>Molecular similarity is quantified using the normalized inverse Manhattan distance between the fingerprints of two molecules (<a class="reference internal" href="hsr.html#module-hsr.similarity" title="hsr.similarity"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Similarity</span></code></a>). This metric provides a straightforward yet effective measure of similarity, capturing both spatial and feature-based nuances.</p></li>
 </ul>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
-<p>The HSR method can be directly used to compute the similarity between two RDKit molecules:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hsr</span>
-
-<span class="n">mol1</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">load_molecules_from_sdf</span><span class="p">(</span><span class="s1">&#39;mol1.sdf&#39;</span><span class="p">)</span>
-<span class="n">mol2</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">load_molecules_from_sdf</span><span class="p">(</span><span class="s1">&#39;mol2.sdf&#39;</span><span class="p">)</span>
-
-<span class="n">similarity</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">compute_similarity</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">mol2</span><span class="p">)</span>
+<p>The HSR method can be used to compute the similarity between two RDKit molecules:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-s<span class="w"> </span>mol1.sdf<span class="w"> </span>mol2.sdf
 </pre></div>
 </div>
-<p>In this example, <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_similarity()</span></code> is used with its default values:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">compute_similarity</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">mol2</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">DEFAULT_FEATURES</span><span class="p">,</span> <span class="n">scaling_method</span><span class="o">=</span><span class="s1">&#39;matrix&#39;</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">chirality</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<p>This command will output the similarity score between the two molecules. HSR can process <code class="docutils literal notranslate"><span class="pre">.mol</span></code>, <code class="docutils literal notranslate"><span class="pre">.mol2</span></code>, <code class="docutils literal notranslate"><span class="pre">.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, and <code class="docutils literal notranslate"><span class="pre">.sdf</span></code> files.</p>
+<p>The Manhattan distance between the fingerprints of the two molecules can also be computed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-d<span class="w"> </span>mol1.sdf<span class="w"> </span>mol2.sdf
 </pre></div>
 </div>
-<p>But, if desired, the method can be “deconstructed” into its more elementary steps. Here, we first compute the fingerprint and then the similarity score:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hsr</span>
-
-<span class="n">mol1</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">load_molecules_from_sdf</span><span class="p">(</span><span class="s1">&#39;mol1.sdf&#39;</span><span class="p">)</span>
-<span class="n">mol2</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">load_molecules_from_sdf</span><span class="p">(</span><span class="s1">&#39;mol2.sdf&#39;</span><span class="p">)</span>
-
-<span class="n">fingerprint1</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">generate_fingerprint_from_molecule</span><span class="p">(</span><span class="n">mol1</span><span class="p">)</span>
-<span class="n">fingerprint2</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">generate_fingerprint_from_molecule</span><span class="p">(</span><span class="n">mol2</span><span class="p">)</span>
-
-<span class="n">similarity</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">compute_similarity_score</span><span class="p">(</span><span class="n">fingerprint1</span><span class="p">,</span> <span class="n">fingerprint2</span><span class="p">)</span>
+<p>This command will output the Manhattan distance between the two molecules.</p>
+<p>And also we can inspect the fingerprints of the molecules:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-f<span class="w"> </span>mol1.sdf<span class="w"> </span>mol2.sdf
 </pre></div>
 </div>
-<p>In this case, the function <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_nd_molecule_fingerprint()</span></code> is used with its default values:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">generate_nd_molecule_fingerprint</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">DEFAULT_FEATURES</span><span class="p">,</span> <span class="n">scaling_method</span><span class="o">=</span><span class="s1">&#39;matrix&#39;</span><span class="p">,</span> <span class="n">scaling_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">chirality</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">removeHs</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>An even more “exploded” example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hsr</span>
-
-<span class="c1"># Molecules from file</span>
-<span class="n">mol1</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">load_molecules_from_sdf</span><span class="p">(</span><span class="s1">&#39;mol1.sdf&#39;</span><span class="p">)</span>
-<span class="n">mol2</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">load_molecules_from_sdf</span><span class="p">(</span><span class="s1">&#39;mol2.sdf&#39;</span><span class="p">)</span>
-
-<span class="c1"># PCA</span>
-<span class="n">mol1_transform</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">compute_pca_using_covariance</span><span class="p">(</span><span class="n">mol1</span><span class="p">)</span>
-<span class="n">mol2_transform</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">compute_pca_using_covariance</span><span class="p">(</span><span class="n">mol2</span><span class="p">)</span>
-
-<span class="c1"># (Optional) Possibility to define personalized scaling for reference points&#39; positions</span>
-<span class="c1"># to insert in the calculation of the fingerprint</span>
-
-<span class="c1"># Fingerprints</span>
-<span class="n">fp1</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">generate_molecule_fingerprint</span><span class="p">(</span><span class="n">mol1_transform</span><span class="p">)</span>
-<span class="n">fp2</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">generate_molecule_fingerprint</span><span class="p">(</span><span class="n">mol2_transform</span><span class="p">)</span>
-
-<span class="c1"># Similarity</span>
-<span class="n">similarity</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">compute_similarity_score</span><span class="p">(</span><span class="n">fp1</span><span class="p">,</span> <span class="n">fp2</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This detailed step-by-step approach provides a deeper insight into the workings of the HSR method. By deconstructing the process, users can gain a better understanding of how each step contributes to the final similarity measurement. This can be particularly useful for debugging, optimizing, or simply gaining a more thorough understanding of the method’s behavior with specific molecules. It allows for a granular inspection of the output at each stage, offering an opportunity to identify and analyze the characteristics of the molecules that are most influential in the similarity assessment.</p>
+<p>This command will output the fingerprints of the two molecules. This command can take multiple molecules as input.</p>
+<p>Three optional flags can be used to modify the behavior of the HSR tool:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-chirality</span></code>: Enable chirality detection. This flag is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> by default as chirality introduces additional complexity and potential reliability issues. For more detailed information on this aspect, please refer to our publication (TODO: add reference).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-removeH</span></code>: Remove hydrogen atoms from the molecule. This flag is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-features</span> <span class="pre">FEATURES</span></code>: Possibility to choose the features to be used in the fingerprint generation. Available features are: DEFAULT_FEATURES: the default 6D representation, None: only spatial coordinates, and PROTON_FEATURES: 4D representattion of spatial coordinates and proton number. This flag is set to <code class="docutils literal notranslate"><span class="pre">DEFAULT_FEATURES</span></code> by default.</p></li>
+</ul>
 </section>
 <section id="adding-new-features">
 <h2>Adding New Features<a class="headerlink" href="#adding-new-features" title="Link to this heading"></a></h2>
 <p>The HSR tool comes with its default features, but users have the flexibility to define new ones for their specific needs.
 New features must be capable of extracting or adding a property to each atom, optionally scaled as desired.</p>
+<p>To add new features, simply define a dictionary with the new feature name as the key and a list of functions as the value.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EXAMPLE</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;new_feature_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">extract_new_feature_1</span><span class="p">]</span>
     <span class="s1">&#39;new_feature_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">extract_new_feature_2</span><span class="p">]</span>
@@ -199,20 +170,7 @@ New features must be capable of extracting or adding a property to each atom, op
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>For detailed insights into the implementation and management of these features within HSR, refer to the <a class="reference internal" href="hsr.html#module-hsr.utils" title="hsr.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utils</span></code></a> module.</p>
-</section>
-<section id="chirality">
-<h2>Chirality<a class="headerlink" href="#chirality" title="Link to this heading"></a></h2>
-<p>HSR is capable of handling and distinguishing chiral molecules. However, this feature is not enabled by default, as it introduces additional complexity and potential reliability issues. For more detailed information on this aspect, please refer to our publication (TODO: add reference).</p>
-<p>To consider chirality in your analysis, simply set the <cite>chirality</cite> flag to <cite>True</cite>. This can be done in either of the following ways:</p>
-<p>When generating a fingerprint:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fingerprint</span> <span class="o">=</span> <span class="n">hsr</span><span class="o">.</span><span class="n">generate_fingerprint_from_molecule</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">chirality</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Or when computing similarity:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">compute_similarity</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span> <span class="n">mol2</span><span class="p">,</span> <span class="n">chirality</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>For detailed insights into the implementation and management of these features and the relative functions within HSR, refer to the <a class="reference internal" href="hsr.html#module-hsr.utils" title="hsr.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utils</span></code></a> module.</p>
 </section>
 <section id="disclaimer">
 <h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Link to this heading"></a></h2>
@@ -222,7 +180,7 @@ An example of this might be comparing similar 3D molecules where one has charges
 In such cases, the addition of chirality detection may further reduce the similarity score.
 For detailed explanations, please refer to our publication (TODO: add reference).</p>
 <p>We recommend enabling chirality detection only in scenarios where molecules are unlikely to be described
-by different numbers of dimensions. However, it’s important to note that this probability can never be
+by different numbers of dimensions. However, it’s important to note that this probability is hard to be
 completely eliminated, as some molecules might be planar, leading to dimensionality reduction after PCA.
 Therefore, if chirality is set to <cite>True</cite> and the dimensionality of the two molecules being compared differs,
 the method will issue a warning as follows:</p>
@@ -232,9 +190,9 @@ the method will issue a warning as follows:</p>
 </div>
 <p><strong>IMPORTANT NOTE:</strong></p>
 <blockquote>
-<div><p>When the <cite>chirality</cite> parameter is set to <cite>True</cite>, both the <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_fingerprint_from_molecules()</span></code> functions return an additional value – the dimensionality of the molecule. This change in return values is crucial to note, especially when these methods are used in a step-wise manner.</p>
+<div><p>When the <cite>chirality</cite> parameter is set to <cite>True</cite>, both the <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_fingerprint_from_molecule()</span></code> functions return an additional value – the dimensionality of the molecule. This change in return values is crucial to note, especially when these methods are used in a new python script.</p>
 <p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_similarity()</span></code> function is designed to handle these additional return values correctly. It will process the dimensionality information and issue a warning if there is a mismatch in dimensionality between the two molecules being compared. This is particularly important because a difference in dimensionality can significantly impact the accuracy of the similarity score.</p>
-<p>If you are using <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance()</span></code> or <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_nd_molecule_fingerprint()</span></code> directly in your code, be prepared to handle an additional return value (the dimensionality) when <cite>chirality</cite> is <cite>True</cite>. This is especially relevant if you are integrating these functions into a larger workflow or using them in conjunction with other methods.</p>
+<p>If you are using <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance()</span></code> or <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_fingerprint_from_molecule()</span></code> directly in your code, be prepared to handle an additional return value (the dimensionality) when <cite>chirality</cite> is <cite>True</cite>. This is especially relevant if you are integrating these functions into a larger workflow or using them in conjunction with other methods.</p>
 <p>For example, if you are performing PCA transformation step-by-step, you should modify your code to accommodate the additional dimensionality information. Similarly, when generating fingerprints, ensure that your code can handle the extra return value without errors.</p>
 <p>This change in the return structure is a direct consequence of enabling chirality detection, which adds a layer of complexity to the analysis but can provide more nuanced insights, especially for chiral molecules.</p>
 </div></blockquote>

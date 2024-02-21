@@ -1,0 +1,9 @@
+name: HSR_devel
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - scipy
+  - rdkit
+  - pytest

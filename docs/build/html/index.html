@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to HSR’s documentation! &mdash; HSR  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -76,38 +78,48 @@
 <h1>Welcome to HSR’s documentation!<a class="headerlink" href="#welcome-to-hsr-s-documentation" title="Link to this heading"></a></h1>
 <section id="hyper-shape-recognition-hsr-a-generalised-moment-based-molecular-similarity-framework">
 <h2>Hyper Shape recognition (HSR): a generalised moment-based molecular similarity framework<a class="headerlink" href="#hyper-shape-recognition-hsr-a-generalised-moment-based-molecular-similarity-framework" title="Link to this heading"></a></h2>
-<p>HSR is a versatile similarity measure tool applicable to a wide range of chemical systems.
-It is developed to enable fast 3D similarity measures across diverse chemicals and molecules.
-Based on the Ultrafast Shape Recognition (USR) method, HSR enhances robustness and versatility
-compared to similar previous methods.</p>
-<p>In addition to considering the 3D coordinates of molecules, HSR incorporates additional
-features for each atom, making it a multidimensional similarity approach. While users
-have the flexibility to modify these features, the default configuration utilizes information
-based on the protons, neutrons, and formal charges of each atom.</p>
+<p>HSR is a versatile, moment-based similarity measure tailored for three-dimensional (3D) chemical representations
+annotated with atomic features. It enhances the robustness and versatility of the Ultrafast Shape Recognition (USR)
+method by incorporating multidimensional features for each atom, such as protons, neutrons, and formal charges.</p>
 </section>
 <section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
 <section id="installing-hsr">
 <h3>Installing HSR<a class="headerlink" href="#installing-hsr" title="Link to this heading"></a></h3>
-<p>HSR can be easily installed using pip or conda. Choose the method that best suits your environment:</p>
-<p>Using pip:</p>
+<p>You can install HSR using either pip or conda:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>hsr
 </pre></div>
 </div>
-<p>Using conda:</p>
+<p>or</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>hsr<span class="w"> </span>-c<span class="w"> </span>conda-forge
 </pre></div>
 </div>
 </section>
 </section>
-<section id="understanding-hsr">
-<h2>Understanding HSR<a class="headerlink" href="#understanding-hsr" title="Link to this heading"></a></h2>
-<p>Although the use of HSR can be pretty straightforward:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-s<span class="w"> </span>mol1.sdf<span class="w"> </span>mol2.sdf
+<section id="build-from-source">
+<h2>Build from source<a class="headerlink" href="#build-from-source" title="Link to this heading"></a></h2>
+<p>Clone the <a class="reference external" href="https://github.com/marcellocostamagna/HSR">HSR repository</a> on your machine. Move inside it and create the conda environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+conda<span class="w"> </span>activate<span class="w"> </span>HSR_devel
 </pre></div>
 </div>
-<p>Some of the logic behind it can be complex at first.
-To learn more about how HSR works and its underlying methodology, see the <a class="reference internal" href="detailed_overview.html"><span class="doc">overview of the method</span></a>.</p>
+<p>Verify the correct creation of the environment by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<p>To use HSR from CLI run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>hsr.hsr_cli<span class="w"> </span>-h
+</pre></div>
+</div>
+<p>If HSR is installed with pip or conda, the above command is replaced by the simple use of <code class="docutils literal notranslate"><span class="pre">hsr</span></code>.</p>
+</section>
+<section id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<p>Run the folowing command to get help in using HSR from CLI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-h
+</pre></div>
+</div>
+<p>For a detailed overview of HSR’s methodology check our <a class="reference external" href="https://marcellocostamagna.github.io/HSR/">documentation</a>.</p>
 </section>
 <section id="licensing">
 <h2>Licensing<a class="headerlink" href="#licensing" title="Link to this heading"></a></h2>

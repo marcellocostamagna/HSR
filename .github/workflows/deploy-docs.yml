@@ -29,7 +29,6 @@ jobs:
         sphinx-build -b html docs/source docs/build  
 
   deploy:
-    runs-on: ubuntu-latest
     needs: build
     permissions:
       pages: write

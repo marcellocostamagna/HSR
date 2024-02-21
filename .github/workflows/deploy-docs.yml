@@ -27,7 +27,7 @@ jobs:
     - name: Build documentation
       run: |
         sphinx-build -b html docs/source docs/build 
-        
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
@@ -40,9 +40,9 @@ jobs:
       pages: write
       id-token: write
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # environment:
+    #   name: github-pages
+    #   url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
     steps:

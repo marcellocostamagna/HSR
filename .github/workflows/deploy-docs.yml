@@ -28,7 +28,6 @@ jobs:
         sphinx-build -b html docs/source docs/build  
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: GH_PAGES_TOKEN
-        publish_dir: ./docs/build  
+      id: deployment
+      uses: actions/checkout@v2
+       

@@ -65,7 +65,7 @@ Run the folowing command to get help in using HSR from CLI:
 
     hsr -h
 
-For a detailed overview of HSR's methodology check our `documentation <https://marcellocostamagna.github.io/HSR/>`_.
+For more deatails of HSR's methodology check our :doc:`overview <detailed_overview>`.
 
 Licensing
 ---------

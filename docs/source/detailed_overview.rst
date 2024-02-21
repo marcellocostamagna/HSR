@@ -115,7 +115,7 @@ the method will issue a warning as follows:
 
 .. code-block:: python
 
-    "WARNING: Comparison between molecules of different dimensionality: {dimensionality1} and {dimensionality2}.\n"
+    "WARNING: Comparison between molecules of different dimensionality: {dimensionality1} and {dimensionality2}"
                    "The similarity score may not be accurate!"
 
 

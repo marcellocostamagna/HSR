@@ -62,3 +62,4 @@ If you use HSR in your research, please cite it as follows:
 Contributions to HSR are welcome! Please read our [Contributing Guidelines](https://marcellocostamagna.github.io/HSR/CONTRIBUTING.html) for information on how to get started.
 
 
+Test workflow

@@ -1,2 +1,2 @@
-hsr
+HSR
 tests

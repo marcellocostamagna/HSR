@@ -1,6 +1,14 @@
 LICENSE
 MANIFEST.in
 setup.py
+HSR/__init__.py
+HSR/fingerprint.py
+HSR/hsr_cli.py
+HSR/pca_transform.py
+HSR/pre_processing.py
+HSR/similarity.py
+HSR/utils.py
+HSR/version.py
 HSR.egg-info/PKG-INFO
 HSR.egg-info/SOURCES.txt
 HSR.egg-info/dependency_links.txt

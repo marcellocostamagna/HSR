@@ -46,7 +46,6 @@ def read_mol_from_file(path, removeHs=False, sanitize=False):
     else:
         print(f"Unsupported file format: {extension}")
         return None
-      
 
 def load_molecules_from_sdf(path, removeHs=False, sanitize=False):
     """

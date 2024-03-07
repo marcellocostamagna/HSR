@@ -9,7 +9,7 @@
 import numpy as np
 from scipy.stats import skew
 
-def compute_pca_using_covariance(original_data, chirality=False, return_axes=False):
+def compute_pca_using_covariance(original_data, chirality=False, return_axes=False, print_steps=False):
     """    
     Perform Principal Component Analysis (PCA) using eigendecomposition of the covariance matrix.
 
@@ -34,6 +34,10 @@ def compute_pca_using_covariance(original_data, chirality=False, return_axes=Fal
     return_axes : bool, optional
         If True, returns the principal axes (eigenvectors) in addition to the transformed data. 
         Default is False.
+    
+    print_steps : bool, optional
+        If True, prints the steps of the PCA process: covariance matrix, eigenvalues, eigenvectors and
+        transformed data. Default is False. 
 
     Returns
     -------
@@ -72,6 +76,13 @@ def compute_pca_using_covariance(original_data, chirality=False, return_axes=Fal
     
         transformed_data = np.dot(original_data, eigenvectors)
         dimesnionality = len(significant_indices)
+        
+        if print_steps:
+            print(f'Covariance matrix:\n{covariance_matrix}\n')
+            print(f'Eigenvalues:\n{eigenvalues}\n')
+            print(f'Eigenvectors:\n{eigenvectors}\n')
+            print(f'Transformed data:\n{transformed_data}\n')
+            
         if return_axes:
             return transformed_data, dimesnionality, eigenvectors
         else:
@@ -81,6 +92,12 @@ def compute_pca_using_covariance(original_data, chirality=False, return_axes=Fal
     eigenvectors[:, significant_indices] = adjusted_eigenvectors
     
     transformed_data = np.dot(original_data, eigenvectors)
+    
+    if print_steps:
+        print(f'Covariance matrix:\n{covariance_matrix}\n')
+        print(f'Eigenvalues:\n{eigenvalues}\n')
+        print(f'Eigenvectors:\n{eigenvectors}\n')
+        print(f'Transformed data:\n{transformed_data}\n')
 
     if return_axes:
         return transformed_data, eigenvectors

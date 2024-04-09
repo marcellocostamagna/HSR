@@ -19,7 +19,7 @@ setup(
     name="HSR",
     version=__version__,
     author="Marcello Costamagna", 
-    license="GNU Affero General Public License", 
+    license="AGPL-3.0",
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=find_packages(),

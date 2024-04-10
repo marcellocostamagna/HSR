@@ -4,4 +4,4 @@
 # See the LICENSE file for more details.
 
 # HSR version
-__version__ = "0.1.5"
+__version__ = "0.1.6"

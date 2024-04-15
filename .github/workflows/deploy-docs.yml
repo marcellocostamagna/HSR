@@ -17,11 +17,16 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: 3.12.2
+      - name: List build directory
+        run: ls -R ./docs/build
       - name: Create .nojekyll
         run: touch ./docs/build/.nojekyll
       - name: Install dependencies
         run: |
           pip install sphinx sphinx-rtd-theme numpy
+      - name: List installed packages
+        run: |
+          pip list
       - name: Sphinx Build
         run: |
           sphinx-build -b html ./docs/source ./docs/build

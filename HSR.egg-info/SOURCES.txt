@@ -24,6 +24,12 @@ hsr/pre_processing.py
 hsr/similarity.py
 hsr/utils.py
 hsr/version.py
+hsr.egg-info/PKG-INFO
+hsr.egg-info/SOURCES.txt
+hsr.egg-info/dependency_links.txt
+hsr.egg-info/entry_points.txt
+hsr.egg-info/requires.txt
+hsr.egg-info/top_level.txt
 tests/__init__.py
 tests/test_fingerprint.py
 tests/test_pca.py

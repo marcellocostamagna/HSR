@@ -3,7 +3,7 @@ import os
 
 # Function to read the __version__ variable from HSR/version.py
 def read_version():
-    version_file = os.path.join(os.path.dirname(__file__), 'HSR', 'version.py')
+    version_file = os.path.join(os.path.dirname(__file__), 'hsr', 'version.py')
     namespace = {}
     with open(version_file, 'r', encoding='utf-8') as f:
         exec(f.read(), namespace)
@@ -16,7 +16,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md'), encoding='utf-8'
     long_description = readme_file.read()
 
 setup(
-    name="HSR",
+    name="hsr",
     version=__version__,
     author="Marcello Costamagna", 
     license="AGPL-3.0",

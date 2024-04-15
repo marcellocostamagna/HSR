@@ -3,15 +3,15 @@ Overview
 
 HSR represents an approach to molecular similarity assessment, 
 leveraging a multidimensional array to encapsulate both spatial and atomic features of molecules.
-The method is grounded in a robust and deterministic process, ensuring precision and consistency in similarity measurements.
+The method is grounded in a robust and deterministic process, ensuring precision and consistency in similarity comparisons.
 
 Initial Data Representation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- Molecules are represented in an N-dimensional array, then called hyper shapes, where the first three dimensions correspond to 3D spatial coordinates (:func:`molecule_to_ndarray <hsr.pre_processing.molecule_to_ndarray>`).
+- Molecules are represented in an N-dimensional array, referred as hyper shapes, where the first three dimensions correspond to 3D spatial coordinates (:func:`molecule_to_ndarray <hsr.pre_processing.molecule_to_ndarray>`).
 
 - Additional features are integrated, enhancing the molecular description. In the default setting (:mod:`Utils <hsr.utils>`), these include:
 
-    - The squre root of the **proton** count.
+    - The square root of the **proton** count.
     - The square root of number of **neutrons** and the number of neutrons of the most common isotope.
     - Formal charge (**electrons** information).
 

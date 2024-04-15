@@ -1,5 +1,5 @@
 {% set name = "hsr" %}
-{% set version = "0.1.7" %}
+{% set version = "0.1.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hsr-{{ version }}.tar.gz
-  sha256: f55c10ebd352478e7ea67b425821ae0fa21a377a79b03b6a24884851030017ea
+  sha256: f3982135492afe8108adc65459395439aea2c37f5a0352cf7082d72526934447
 
 build:
   entry_points:
@@ -18,10 +18,10 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python
     - pip
   run:
-    - python >=3.7
+    - python
     - numpy
     - scipy
     - rdkit
@@ -36,9 +36,9 @@ test:
     - pip
 
 about:
-  license: AGPL-3.0-only
+  license: AGPL-3.0
   license_file: LICENSE
 
 extra:
   recipe-maintainers:
-    - marcellocostamagna
+    - AddYourGitHubIdHere

@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
+        with:
+          python-version: 3.12.2
+          sphinx-version: 7.2.6
       - name: Create .nojekyll
         run: touch ./docs/build/.nojekyll
       - name: Install dependencies
@@ -22,7 +25,9 @@ jobs:
           pip install sphinx sphinx-rtd-theme 
       - name: Sphinx Build
         run: |
-          sphinx-build -b html ./docs/source ./docs/build
+          
+          make -C ./docs html
+
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

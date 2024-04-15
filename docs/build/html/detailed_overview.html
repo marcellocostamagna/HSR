@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview &mdash; HSR  documentation</title>
+  <title>Overview &mdash; hsr  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -34,7 +34,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            HSR
+            hsr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -66,7 +66,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">HSR</a>
+          <a href="index.html">hsr</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -88,15 +88,15 @@
 <h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
 <p>HSR represents an approach to molecular similarity assessment,
 leveraging a multidimensional array to encapsulate both spatial and atomic features of molecules.
-The method is grounded in a robust and deterministic process, ensuring precision and consistency in similarity measurements.</p>
+The method is grounded in a robust and deterministic process, ensuring precision and consistency in similarity comparisons.</p>
 <section id="initial-data-representation">
 <h2>Initial Data Representation<a class="headerlink" href="#initial-data-representation" title="Link to this heading"></a></h2>
 <ul>
-<li><p>Molecules are represented in an N-dimensional array, then called hyper shapes, where the first three dimensions correspond to 3D spatial coordinates (<a class="reference internal" href="hsr.html#hsr.pre_processing.molecule_to_ndarray" title="hsr.pre_processing.molecule_to_ndarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">molecule_to_ndarray</span></code></a>).</p></li>
+<li><p>Molecules are represented in an N-dimensional array, referred as hyper shapes, where the first three dimensions correspond to 3D spatial coordinates (<a class="reference internal" href="hsr.html#hsr.pre_processing.molecule_to_ndarray" title="hsr.pre_processing.molecule_to_ndarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">molecule_to_ndarray</span></code></a>).</p></li>
 <li><p>Additional features are integrated, enhancing the molecular description. In the default setting (<a class="reference internal" href="hsr.html#module-hsr.utils" title="hsr.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utils</span></code></a>), these include:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>The squre root of the <strong>proton</strong> count.</p></li>
+<li><p>The square root of the <strong>proton</strong> count.</p></li>
 <li><p>The square root of number of <strong>neutrons</strong> and the number of neutrons of the most common isotope.</p></li>
 <li><p>Formal charge (<strong>electrons</strong> information).</p></li>
 </ul>
@@ -184,7 +184,7 @@ by different numbers of dimensions. However, it’s important to note that this 
 completely eliminated, as some molecules might be planar, leading to dimensionality reduction after PCA.
 Therefore, if chirality is set to <cite>True</cite> and the dimensionality of the two molecules being compared differs,
 the method will issue a warning as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;WARNING: Comparison between molecules of different dimensionality: </span><span class="si">{dimensionality1}</span><span class="s2"> and </span><span class="si">{dimensionality2}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;WARNING: Comparison between molecules of different dimensionality: </span><span class="si">{dimensionality1}</span><span class="s2"> and </span><span class="si">{dimensionality2}</span><span class="s2">&quot;</span>
                <span class="s2">&quot;The similarity score may not be accurate!&quot;</span>
 </pre></div>
 </div>

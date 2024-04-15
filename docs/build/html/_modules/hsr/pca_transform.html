@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsr.pca_transform &mdash; HSR  documentation</title>
+  <title>hsr.pca_transform &mdash; hsr  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
@@ -31,7 +31,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            HSR
+            hsr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -54,7 +54,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">HSR</a>
+          <a href="../../index.html">hsr</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -86,7 +86,7 @@
 
 <div class="viewcode-block" id="compute_pca_using_covariance">
 <a class="viewcode-back" href="../../hsr.html#hsr.pca_transform.compute_pca_using_covariance">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_pca_using_covariance</span><span class="p">(</span><span class="n">original_data</span><span class="p">,</span> <span class="n">chirality</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_axes</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">compute_pca_using_covariance</span><span class="p">(</span><span class="n">original_data</span><span class="p">,</span> <span class="n">chirality</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_axes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">print_steps</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;    </span>
 <span class="sd">    Perform Principal Component Analysis (PCA) using eigendecomposition of the covariance matrix.</span>
 
@@ -111,6 +111,10 @@
 <span class="sd">    return_axes : bool, optional</span>
 <span class="sd">        If True, returns the principal axes (eigenvectors) in addition to the transformed data. </span>
 <span class="sd">        Default is False.</span>
+<span class="sd">    </span>
+<span class="sd">    print_steps : bool, optional</span>
+<span class="sd">        If True, prints the steps of the PCA process: covariance matrix, eigenvalues, eigenvectors and</span>
+<span class="sd">        transformed data. Default is False. </span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -149,6 +153,13 @@
     
         <span class="n">transformed_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_data</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">)</span>
         <span class="n">dimesnionality</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">significant_indices</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">print_steps</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Covariance matrix:</span><span class="se">\n</span><span class="si">{</span><span class="n">covariance_matrix</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Eigenvalues:</span><span class="se">\n</span><span class="si">{</span><span class="n">eigenvalues</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Eigenvectors:</span><span class="se">\n</span><span class="si">{</span><span class="n">eigenvectors</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Transformed data:</span><span class="se">\n</span><span class="si">{</span><span class="n">transformed_data</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            
         <span class="k">if</span> <span class="n">return_axes</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">transformed_data</span><span class="p">,</span> <span class="n">dimesnionality</span><span class="p">,</span> <span class="n">eigenvectors</span>
         <span class="k">else</span><span class="p">:</span>
@@ -158,6 +169,12 @@
     <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="n">significant_indices</span><span class="p">]</span> <span class="o">=</span> <span class="n">adjusted_eigenvectors</span>
     
     <span class="n">transformed_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">original_data</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">print_steps</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Covariance matrix:</span><span class="se">\n</span><span class="si">{</span><span class="n">covariance_matrix</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Eigenvalues:</span><span class="se">\n</span><span class="si">{</span><span class="n">eigenvalues</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Eigenvectors:</span><span class="se">\n</span><span class="si">{</span><span class="n">eigenvectors</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Transformed data:</span><span class="se">\n</span><span class="si">{</span><span class="n">transformed_data</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">return_axes</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">transformed_data</span><span class="p">,</span> <span class="n">eigenvectors</span>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>hsr package &mdash; HSR  documentation</title>
+  <title>hsr package &mdash; hsr  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -34,7 +34,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            HSR
+            hsr
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -106,7 +106,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">HSR</a>
+          <a href="index.html">hsr</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -329,7 +329,7 @@ chirality.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="hsr.pca_transform.compute_pca_using_covariance">
-<span class="sig-prename descclassname"><span class="pre">hsr.pca_transform.</span></span><span class="sig-name descname"><span class="pre">compute_pca_using_covariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chirality</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsr/pca_transform.html#compute_pca_using_covariance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsr.pca_transform.compute_pca_using_covariance" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">hsr.pca_transform.</span></span><span class="sig-name descname"><span class="pre">compute_pca_using_covariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chirality</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hsr/pca_transform.html#compute_pca_using_covariance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hsr.pca_transform.compute_pca_using_covariance" title="Link to this definition"></a></dt>
 <dd><p>Perform Principal Component Analysis (PCA) using eigendecomposition of the covariance matrix.</p>
 <p>This function conducts PCA on a given dataset to produce a consistent reference system,
 facilitating comparison between different molecules. 
@@ -349,6 +349,9 @@ Default is False.</p>
 </dd>
 <dt>return_axes<span class="classifier">bool, optional</span></dt><dd><p>If True, returns the principal axes (eigenvectors) in addition to the transformed data. 
 Default is False.</p>
+</dd>
+<dt>print_steps<span class="classifier">bool, optional</span></dt><dd><p>If True, prints the steps of the PCA process: covariance matrix, eigenvalues, eigenvectors and
+transformed data. Default is False.</p>
 </dd>
 </dl>
 </section>

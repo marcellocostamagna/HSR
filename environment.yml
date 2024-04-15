@@ -7,3 +7,5 @@ dependencies:
   - scipy
   - rdkit
   - pytest
+  - sphinx
+  - sphinx_rtd_theme

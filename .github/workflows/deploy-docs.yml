@@ -14,23 +14,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - name: Setup Conda
+        uses: conda-incubator/setup-miniconda@v2
         with:
+          auto-update-conda: true
           python-version: 3.12.2
-      - name: List build directory
-        run: ls -R ./docs/build
-      - name: Create .nojekyll
-        run: touch ./docs/build/.nojekyll
+          environment-file: environment.yml
+          activate-environment: HSR_devel
       - name: Install dependencies
+        shell: bash -l {0}
         run: |
-          pip install sphinx sphinx-rtd-theme numpy scipy 
+          conda install -c conda-forge rdkit
+      
       - name: List installed packages
+        shell: bash -l {0}
         run: |
-          pip list
-      - name: Sphinx Build
+          conda list
+        
+      - name: Build Sphinx Documentation
+        shell: bash -l {0}
         run: |
           sphinx-build -b html ./docs/source ./docs/build
-
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

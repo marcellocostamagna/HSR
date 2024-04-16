@@ -20,14 +20,14 @@ Principal Component Analysis (PCA)
 
 - The method applies PCA to the N-dimensional (6D in default mode) molecular representation, extracting principal components of the hyper shape (:func:`compute_pca_using_covariance <hsr.pca_transform.compute_pca_using_covariance>`).
 
-- Orientation of eigenvectors is determined rigorously. The sign of each eigenvector is set based on the maximum projection of the data onto that eigenvector. This ensures a deterministic and unambiguous assignment of orientation (:func:`adjust_eigenvector_signs <hsr.pca_transform.adjust_eigenvector_signs>`).
+- Orientation of eigenvectors is determined rigorously. The sign of each eigenvector is set based on the maximum projection (PCA score) of the data onto that eigenvector. This ensures a deterministic and unambiguous assignment of orientation (:func:`adjust_eigenvector_signs <hsr.pca_transform.adjust_eigenvector_signs>`).
 
 Fingerprint Construction
 ~~~~~~~~~~~~~~~~~~~~~~~~
 - Post-PCA, the method constructs a molecular fingerprint (:mod:`Fingerprint <hsr.fingerprint>`). This involves selecting reference points corresponding to each principal component and the geometric center of the molecule.
 - The distance of each reference point from the center can be adjusted. By default, it is set to the maximum coordinate value in that dimension.
 - For each reference point, distances to all atoms are calculated, resulting in a set of distance distributions.
-- From each distribution, three statistical moments are computed: mean, standard deviation, and skewness. These values are compiled into a list, forming the comprehensive fingerprint of the molecule.
+- From each distribution, three statistical moments are computed: mean, standard deviation, and skewness. These values are collected into a list, forming the comprehensive fingerprint of the molecule.
 
 Similarity Measurement
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -101,8 +101,16 @@ For detailed insights into the implementation and management of these features a
 Disclaimer
 ~~~~~~~~~~
 
-Introducing chirality into the similarity measurement process can make the method less reliable, 
-particularly when comparing molecules with differing dimensionality, such as a different number of principal components. 
+Introducing chirality into the similarity measurement process can make the method less reliable.
+For example, the PCA process can reduce the dimensionality of a molecule and hence, some of the eigenvectors's orientation will not be consistently assigned.
+In this case the program will issue the following warning:
+
+.. code-block:: python
+
+    "WARNING: Chirality may not be consistent. {original_eigenvectors_number-len(significant_indices)} vectors have arbitrary signs."
+
+
+Another case where chirality can prove unreliable is when comparing molecules with differing dimensionality, such as a different number of principal components. 
 An example of this might be comparing similar 3D molecules where one has charges and the other is neutral.
 In such cases, the addition of chirality detection may further reduce the similarity score. 
 For detailed explanations, please refer to our publication (TODO: add reference).

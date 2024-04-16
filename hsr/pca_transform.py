@@ -64,14 +64,23 @@ def compute_pca_using_covariance(original_data, chirality=False, return_axes=Fal
     # Handle chirality
     if chirality:
         reduced_eigenvectors = extract_relevant_subspace(eigenvectors, significant_indices)
+        # If the number of eigenvectors is different from the number of significant indices,
+        # the chirality cannot be unambigously. The result may not be consistent.
+        if reduced_eigenvectors.shape[1] != len(significant_indices):
+            print(f'WARNING: Chirality may not be consistent. {reduced_eigenvectors.shape[1]-len(significant_indices)} vectors have arbitrary signs.')
+        
         determinant = np.linalg.det(reduced_eigenvectors) 
-        if determinant < 0:
-            eigenvectors[:, 0] *= -1
+        # if determinant < 0:
+        #     eigenvectors[:, 0] *= -1
    
         adjusted_eigenvectors, n_changes, best_eigenvector_to_flip  = adjust_eigenvector_signs(original_data, eigenvectors[:, significant_indices], chirality) 
         eigenvectors[:, significant_indices] = adjusted_eigenvectors
 
-        if n_changes % 2 == 1:            
+        # if n_changes % 2 == 1:            
+        #     eigenvectors[:, best_eigenvector_to_flip] *= -1
+        
+        # New approach to handle chirality by determinant imposition
+        if determinant*(-1)**n_changes < 0:
             eigenvectors[:, best_eigenvector_to_flip] *= -1
     
         transformed_data = np.dot(original_data, eigenvectors)
@@ -104,7 +113,7 @@ def compute_pca_using_covariance(original_data, chirality=False, return_axes=Fal
     else:
         return  transformed_data
 
-def adjust_eigenvector_signs(original_data, eigenvectors, chirality=False, tolerance= 1e-4):
+def adjust_eigenvector_signs(original_data, eigenvectors, chirality=False, tolerance= 1e-10):
     """
     Adjust the sign of eigenvectors based on the data's projections.
 

@@ -63,11 +63,12 @@ def compute_pca_using_covariance(original_data, chirality=False, return_axes=Fal
 
     # Handle chirality
     if chirality:
+        original_eigenvectors_number = eigenvectors.shape[1]
         reduced_eigenvectors = extract_relevant_subspace(eigenvectors, significant_indices)
         # If the number of eigenvectors is different from the number of significant indices,
         # the chirality cannot be unambigously. The result may not be consistent.
-        if reduced_eigenvectors.shape[1] != len(significant_indices):
-            print(f'WARNING: Chirality may not be consistent. {reduced_eigenvectors.shape[1]-len(significant_indices)} vectors have arbitrary signs.')
+        if original_eigenvectors_number != len(significant_indices):
+            print(f'WARNING: Chirality may not be consistent. {original_eigenvectors_number-len(significant_indices)} vectors have arbitrary signs.')
         
         determinant = np.linalg.det(reduced_eigenvectors) 
         # if determinant < 0:

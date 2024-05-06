@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to HSR’s documentation! &mdash; hsr  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+    <link rel="canonical" href="https://github.com/marcellocostamagna/HSR/index.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hyper Shape Recognition (HSR)" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            hsr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Hyper Shape Recognition (HSR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detailed_overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing to HSR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">hsr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to HSR’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-hsr-s-documentation">
+<h1>Welcome to HSR’s documentation!<a class="headerlink" href="#welcome-to-hsr-s-documentation" title="Link to this heading"></a></h1>
+<section id="hyper-shape-recognition-hsr-a-generalised-moment-based-molecular-similarity-framework">
+<h2>Hyper Shape recognition (HSR): a generalised moment-based molecular similarity framework<a class="headerlink" href="#hyper-shape-recognition-hsr-a-generalised-moment-based-molecular-similarity-framework" title="Link to this heading"></a></h2>
+<p>HSR is a versatile, moment-based similarity measure tailored for three-dimensional (3D) chemical representations
+annotated with atomic features. It enhances the robustness and versatility of the Ultrafast Shape Recognition (USR)
+method by incorporating multidimensional features for each atom, such as protons, neutrons, and formal charges.</p>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<section id="installing-hsr">
+<h3>Installing HSR<a class="headerlink" href="#installing-hsr" title="Link to this heading"></a></h3>
+<p>You can install HSR using either pip or conda:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>hsr
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>hsr<span class="w"> </span>-c<span class="w"> </span>conda-forge
+</pre></div>
+</div>
+</section>
+</section>
+<section id="build-from-source">
+<h2>Build from source<a class="headerlink" href="#build-from-source" title="Link to this heading"></a></h2>
+<p>Clone the <a class="reference external" href="https://github.com/marcellocostamagna/HSR">HSR repository</a> on your machine. Move inside it and create the conda environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+conda<span class="w"> </span>activate<span class="w"> </span>HSR_devel
+</pre></div>
+</div>
+<p>Verify the correct creation of the environment by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<p>To use HSR from CLI run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>hsr.hsr_cli<span class="w"> </span>-h
+</pre></div>
+</div>
+<p>If HSR is installed with pip or conda, the above command is replaced by the simple use of <code class="docutils literal notranslate"><span class="pre">hsr</span></code>.</p>
+</section>
+<section id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<p>Run the folowing command to get help in using HSR from CLI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-h
+</pre></div>
+</div>
+<p>For more deatails of HSR’s methodology check our <a class="reference internal" href="detailed_overview.html"><span class="doc">overview</span></a>.</p>
+</section>
+<section id="licensing">
+<h2>Licensing<a class="headerlink" href="#licensing" title="Link to this heading"></a></h2>
+<p>HSR is licensed under the GNU Affero General Public License Version 3, 19 November 2007. For more details,
+see the LICENSE file in the <a class="reference external" href="https://github.com/marcellocostamagna/HSR">source code repository</a> or visit <a class="reference external" href="https://www.gnu.org/licenses/agpl-3.0.html">GNU AGPL v3 License</a>.</p>
+</section>
+<section id="citing-hsr">
+<h2>Citing HSR<a class="headerlink" href="#citing-hsr" title="Link to this heading"></a></h2>
+<p>If you use HSR in your research, please cite it as follows:</p>
+<p>[TODO: Add citation]</p>
+</section>
+<section id="contributing-to-hsr">
+<h2>Contributing to HSR<a class="headerlink" href="#contributing-to-hsr" title="Link to this heading"></a></h2>
+<p>We welcome contributions to HSR! If you’re interested in helping,
+please read our <a class="reference internal" href="CONTRIBUTING.html"><span class="doc">Contributing Guidelines</span></a> for information on how to get started.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Hyper Shape Recognition (HSR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detailed_overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing to HSR</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-right" title="Hyper Shape Recognition (HSR)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marcello Costamagna.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

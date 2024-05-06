@@ -36,9 +36,9 @@ test:
     - pip
 
 about:
-  license: AGPL-3.0
+  license: AGPL-3.0-only
   license_file: LICENSE
 
 extra:
   recipe-maintainers:
-    - AddYourGitHubIdHere
+    - marcellocostamagna

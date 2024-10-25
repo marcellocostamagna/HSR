@@ -1,6 +1,7 @@
 Metadata-Version: 2.1
 Name: hsr
-Version: 0.1.11
+Version: 0.1.13
+Summary: Hypershape recognition (HSR): a general framework for moment-based similarity measures
 Author: Marcello Costamagna
 License: AGPL-3.0
 Description-Content-Type: text/markdown
@@ -9,7 +10,7 @@ Requires-Dist: numpy
 Requires-Dist: scipy
 Requires-Dist: rdkit
 
-# Hyper Shape recognition (HSR): a general framework for moment-based similarity measures
+# Hypershape recognition (HSR): a general framework for moment-based similarity measures
 
  HSR is a versatile, moment-based similarity measure tailored for three-dimensional (3D) chemical representations annotated with atomic features. It enhances the robustness and versatility of the Ultrafast Shape Recognition (USR) method by incorporating multidimensional features for each atom, such as protons, neutrons, and formal charges.
 

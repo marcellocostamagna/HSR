@@ -141,7 +141,7 @@ def compute_similarity_from_ndarray(mol1_nd: np.array, mol2_nd: np.array, scalin
         The computed similarity score between the two molecules.
     """
     distance_score = compute_distance_from_ndarray(mol1_nd, mol2_nd, scaling=scaling, chirality=chirality)
-    similarity_score = calculate_similarity_from_distance(distance_score, mol1_nd.shape[1])
+    similarity_score = calculate_similarity_from_distance(distance_score, (mol1_nd.shape[1]+1)*3)
     return similarity_score
 
 def compute_distance(mol1, mol2, features=DEFAULT_FEATURES, scaling='matrix', removeHs=False, chirality=False):

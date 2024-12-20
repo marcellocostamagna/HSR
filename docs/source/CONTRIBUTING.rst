@@ -67,6 +67,5 @@ Questions or Need Help?
 
 If you have questions or need help with the contribution process, feel
 free to reach out to the maintainers or open an issue for discussion.
-(TODO: add contacts information)
 Thank you for contributing to HSR, and we look forward to your
 contributions! 

@@ -6,8 +6,8 @@
 Welcome to HSR's documentation!
 ==================================
 
-Hyper Shape recognition (HSR): a generalised moment-based molecular similarity framework
------------------------------------------------------------------------------------------
+Hypershape Recognition (HSR): a Generalised Framework for Moment-Based Molecular Similarity
+-------------------------------------------------------------------------------------------
 
 HSR is a versatile, moment-based similarity measure tailored for three-dimensional (3D) chemical representations 
 annotated with atomic features. It enhances the robustness and versatility of the Ultrafast Shape Recognition (USR) 

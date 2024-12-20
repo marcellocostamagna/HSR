@@ -34,7 +34,7 @@ To use HSR from CLI you can run:
 ```bash
 python -m hsr.hsr_cli 
 ```
-If HSR is installed with pip or conda, the above command is replace by the simple use of ``hsr``
+If HSR is installed with pip or conda, the above command is replaced by the simple use of ``hsr``
 
 ### Basic Usage
 
@@ -55,7 +55,7 @@ HSR is licensed under the [GNU Affero General Public License Version 3](https://
 
 If you use HSR in your research, please cite it as follows:
 
-[TODO: Add citation]
+[TODO: Add citation. Publishing in progress!]
 
 ### Contributing
 

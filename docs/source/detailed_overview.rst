@@ -7,7 +7,7 @@ The method is grounded in a robust and deterministic process, ensuring precision
 
 Initial Data Representation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- Molecules are represented in an N-dimensional array, referred as hyper shapes, where the first three dimensions correspond to 3D spatial coordinates (:func:`molecule_to_ndarray <hsr.pre_processing.molecule_to_ndarray>`).
+- Molecules are represented in an N-dimensional array, referred as hypershapes, where the first three dimensions correspond to 3D spatial coordinates (:func:`molecule_to_ndarray <hsr.pre_processing.molecule_to_ndarray>`).
 
 - Additional features are integrated, enhancing the molecular description. In the default setting (:mod:`Utils <hsr.utils>`), these include:
 
@@ -64,7 +64,7 @@ This command will output the fingerprints of the two molecules. This command can
 
 Three optional flags can be used to modify the behavior of the HSR tool:
 
-- ``-chirality``: Enable chirality detection. This flag is set to ``False`` by default as chirality introduces additional complexity and potential reliability issues. For more detailed information on this aspect, please refer to our publication (TODO: add reference).
+- ``-chirality``: Enable chirality detection. This flag is set to ``False`` by default as chirality introduces additional complexity and potential reliability issues. For more detailed information on this aspect, please refer to our publication (TODO: add reference. Publishing in progress!).
 - ``-removeH``: Remove hydrogen atoms from the molecule. This flag is set to ``False`` by default.
 - ``-features FEATURES``: Possibility to choose the features to be used in the fingerprint generation. Available features are: DEFAULT_FEATURES: the default 6D representation, None: only spatial coordinates, and PROTON_FEATURES: 4D representattion of spatial coordinates and proton number. This flag is set to ``DEFAULT_FEATURES`` by default.  
 
@@ -113,7 +113,7 @@ In this case the program will issue the following warning:
 Another case where chirality can prove unreliable is when comparing molecules with differing dimensionality, such as a different number of principal components. 
 An example of this might be comparing similar 3D molecules where one has charges and the other is neutral.
 In such cases, the addition of chirality detection may further reduce the similarity score. 
-For detailed explanations, please refer to our publication (TODO: add reference).
+For detailed explanations, please refer to our publication (TODO: add reference- Publishing in progress!).
 
 We recommend enabling chirality detection only in scenarios where molecules are unlikely to be described 
 by different numbers of dimensions. However, it's important to note that this probability is hard to be 
@@ -129,7 +129,7 @@ the method will issue a warning as follows:
 
 **IMPORTANT NOTE:**
 
-   When the `chirality` parameter is set to `True`, both the :func:`compute_pca_using_covariance` and :func:`generate_fingerprint_from_molecule` functions return an additional value – the dimensionality of the molecule. This change in return values is crucial to note, especially when these methods are used in a new python script.
+   When the `chirality` parameter is set to `True`, both the :func:`compute_pca_using_covariance` and :func:`generate_fingerprint_from_molecule` functions return an additional value – the dimensionality of the molecule. This change in return values is crucial to note, especially when these methods are used in a new script.
 
    The :func:`compute_similarity` function is designed to handle these additional return values correctly. It will process the dimensionality information and issue a warning if there is a mismatch in dimensionality between the two molecules being compared. This is particularly important because a difference in dimensionality can significantly impact the accuracy of the similarity score.
 

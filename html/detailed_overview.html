@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; hsr  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+    <link rel="canonical" href="https://github.com/marcellocostamagna/HSR/detailed_overview.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to HSR" href="CONTRIBUTING.html" />
+    <link rel="prev" title="hsr package" href="hsr.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            hsr
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Hyper Shape Recognition (HSR)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initial-data-representation">Initial Data Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fingerprint-construction">Fingerprint Construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#similarity-measurement">Similarity Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-new-features">Adding New Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing to HSR</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">hsr</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/detailed_overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<p>HSR represents an approach to molecular similarity assessment,
+leveraging a multidimensional array to encapsulate both spatial and atomic features of molecules.
+The method is grounded in a robust and deterministic process, ensuring precision and consistency in similarity comparisons.</p>
+<section id="initial-data-representation">
+<h2>Initial Data Representation<a class="headerlink" href="#initial-data-representation" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Molecules are represented in an N-dimensional array, referred as hyper shapes, where the first three dimensions correspond to 3D spatial coordinates (<a class="reference internal" href="hsr.html#hsr.pre_processing.molecule_to_ndarray" title="hsr.pre_processing.molecule_to_ndarray"><code class="xref py py-func docutils literal notranslate"><span class="pre">molecule_to_ndarray</span></code></a>).</p></li>
+<li><p>Additional features are integrated, enhancing the molecular description. In the default setting (<a class="reference internal" href="hsr.html#module-hsr.utils" title="hsr.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utils</span></code></a>), these include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The square root of the <strong>proton</strong> count.</p></li>
+<li><p>The square root of number of <strong>neutrons</strong> and the number of neutrons of the most common isotope.</p></li>
+<li><p>Formal charge (<strong>electrons</strong> information).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="principal-component-analysis-pca">
+<h2>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The method applies PCA to the N-dimensional (6D in default mode) molecular representation, extracting principal components of the hyper shape (<a class="reference internal" href="hsr.html#hsr.pca_transform.compute_pca_using_covariance" title="hsr.pca_transform.compute_pca_using_covariance"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance</span></code></a>).</p></li>
+<li><p>Orientation of eigenvectors is determined rigorously. The sign of each eigenvector is set based on the maximum projection of the data onto that eigenvector. This ensures a deterministic and unambiguous assignment of orientation (<a class="reference internal" href="hsr.html#hsr.pca_transform.adjust_eigenvector_signs" title="hsr.pca_transform.adjust_eigenvector_signs"><code class="xref py py-func docutils literal notranslate"><span class="pre">adjust_eigenvector_signs</span></code></a>).</p></li>
+</ul>
+</section>
+<section id="fingerprint-construction">
+<h2>Fingerprint Construction<a class="headerlink" href="#fingerprint-construction" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Post-PCA, the method constructs a molecular fingerprint (<a class="reference internal" href="hsr.html#module-hsr.fingerprint" title="hsr.fingerprint"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Fingerprint</span></code></a>). This involves selecting reference points corresponding to each principal component and the geometric center of the molecule.</p></li>
+<li><p>The distance of each reference point from the center can be adjusted. By default, it is set to the maximum coordinate value in that dimension.</p></li>
+<li><p>For each reference point, distances to all atoms are calculated, resulting in a set of distance distributions.</p></li>
+<li><p>From each distribution, three statistical moments are computed: mean, standard deviation, and skewness. These values are compiled into a list, forming the comprehensive fingerprint of the molecule.</p></li>
+</ul>
+</section>
+<section id="similarity-measurement">
+<h2>Similarity Measurement<a class="headerlink" href="#similarity-measurement" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Molecular similarity is quantified using the normalized inverse Manhattan distance between the fingerprints of two molecules (<a class="reference internal" href="hsr.html#module-hsr.similarity" title="hsr.similarity"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Similarity</span></code></a>). This metric provides a straightforward yet effective measure of similarity, capturing both spatial and feature-based nuances.</p></li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<p>The HSR method can be used to compute the similarity between two RDKit molecules:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-s<span class="w"> </span>mol1.sdf<span class="w"> </span>mol2.sdf
+</pre></div>
+</div>
+<p>This command will output the similarity score between the two molecules. HSR can process <code class="docutils literal notranslate"><span class="pre">.mol</span></code>, <code class="docutils literal notranslate"><span class="pre">.mol2</span></code>, <code class="docutils literal notranslate"><span class="pre">.pdb</span></code>, <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, and <code class="docutils literal notranslate"><span class="pre">.sdf</span></code> files.</p>
+<p>The Manhattan distance between the fingerprints of the two molecules can also be computed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-d<span class="w"> </span>mol1.sdf<span class="w"> </span>mol2.sdf
+</pre></div>
+</div>
+<p>This command will output the Manhattan distance between the two molecules.</p>
+<p>And also we can inspect the fingerprints of the molecules:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hsr<span class="w"> </span>-f<span class="w"> </span>mol1.sdf<span class="w"> </span>mol2.sdf
+</pre></div>
+</div>
+<p>This command will output the fingerprints of the two molecules. This command can take multiple molecules as input.</p>
+<p>Three optional flags can be used to modify the behavior of the HSR tool:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-chirality</span></code>: Enable chirality detection. This flag is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> by default as chirality introduces additional complexity and potential reliability issues. For more detailed information on this aspect, please refer to our publication (TODO: add reference).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-removeH</span></code>: Remove hydrogen atoms from the molecule. This flag is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> by default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-features</span> <span class="pre">FEATURES</span></code>: Possibility to choose the features to be used in the fingerprint generation. Available features are: DEFAULT_FEATURES: the default 6D representation, None: only spatial coordinates, and PROTON_FEATURES: 4D representattion of spatial coordinates and proton number. This flag is set to <code class="docutils literal notranslate"><span class="pre">DEFAULT_FEATURES</span></code> by default.</p></li>
+</ul>
+</section>
+<section id="adding-new-features">
+<h2>Adding New Features<a class="headerlink" href="#adding-new-features" title="Link to this heading"></a></h2>
+<p>The HSR tool comes with its default features, but users have the flexibility to define new ones for their specific needs.
+New features must be capable of extracting or adding a property to each atom, optionally scaled as desired.</p>
+<p>To add new features, simply define a dictionary with the new feature name as the key and a list of functions as the value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EXAMPLE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;new_feature_1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">extract_new_feature_1</span><span class="p">]</span>
+    <span class="s1">&#39;new_feature_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">extract_new_feature_2</span><span class="p">]</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For comparison, here is the dictionary of the default features:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEFAULT_FEATURES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;protons&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">extract_proton_number</span><span class="p">],</span>
+    <span class="s1">&#39;delta_neutrons&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">extract_neutron_difference_from_common_isotope</span><span class="p">],</span>
+    <span class="s1">&#39;formal_charges&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">extract_formal_charge</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For detailed insights into the implementation and management of these features and the relative functions within HSR, refer to the <a class="reference internal" href="hsr.html#module-hsr.utils" title="hsr.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utils</span></code></a> module.</p>
+</section>
+<section id="disclaimer">
+<h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Link to this heading"></a></h2>
+<p>Introducing chirality into the similarity measurement process can make the method less reliable,
+particularly when comparing molecules with differing dimensionality, such as a different number of principal components.
+An example of this might be comparing similar 3D molecules where one has charges and the other is neutral.
+In such cases, the addition of chirality detection may further reduce the similarity score.
+For detailed explanations, please refer to our publication (TODO: add reference).</p>
+<p>We recommend enabling chirality detection only in scenarios where molecules are unlikely to be described
+by different numbers of dimensions. However, it’s important to note that this probability is hard to be
+completely eliminated, as some molecules might be planar, leading to dimensionality reduction after PCA.
+Therefore, if chirality is set to <cite>True</cite> and the dimensionality of the two molecules being compared differs,
+the method will issue a warning as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;WARNING: Comparison between molecules of different dimensionality: </span><span class="si">{dimensionality1}</span><span class="s2"> and </span><span class="si">{dimensionality2}</span><span class="s2">&quot;</span>
+               <span class="s2">&quot;The similarity score may not be accurate!&quot;</span>
+</pre></div>
+</div>
+<p><strong>IMPORTANT NOTE:</strong></p>
+<blockquote>
+<div><p>When the <cite>chirality</cite> parameter is set to <cite>True</cite>, both the <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_fingerprint_from_molecule()</span></code> functions return an additional value – the dimensionality of the molecule. This change in return values is crucial to note, especially when these methods are used in a new python script.</p>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_similarity()</span></code> function is designed to handle these additional return values correctly. It will process the dimensionality information and issue a warning if there is a mismatch in dimensionality between the two molecules being compared. This is particularly important because a difference in dimensionality can significantly impact the accuracy of the similarity score.</p>
+<p>If you are using <code class="xref py py-func docutils literal notranslate"><span class="pre">compute_pca_using_covariance()</span></code> or <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_fingerprint_from_molecule()</span></code> directly in your code, be prepared to handle an additional return value (the dimensionality) when <cite>chirality</cite> is <cite>True</cite>. This is especially relevant if you are integrating these functions into a larger workflow or using them in conjunction with other methods.</p>
+<p>For example, if you are performing PCA transformation step-by-step, you should modify your code to accommodate the additional dimensionality information. Similarly, when generating fingerprints, ensure that your code can handle the extra return value without errors.</p>
+<p>This change in the return structure is a direct consequence of enabling chirality detection, which adds a layer of complexity to the analysis but can provide more nuanced insights, especially for chiral molecules.</p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hsr.html" class="btn btn-neutral float-left" title="hsr package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CONTRIBUTING.html" class="btn btn-neutral float-right" title="Contributing to HSR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marcello Costamagna.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

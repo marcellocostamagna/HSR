@@ -7,7 +7,7 @@ setup(
     author="Marcello Costamagna", 
     license="AGPL-3.0",
     description="Hypershape recognition (HSR): a general framework for moment-based similarity measures",
-    long_description=open("README.md", encoding="utf-8").read(),
+    long_description=open("ReadME.md", encoding="utf-8").read(),
     long_description_content_type='text/markdown',
     packages=find_packages(exclude=["tests", "tests.*"]),
     install_requires=[

@@ -1,27 +1,13 @@
 from setuptools import setup, find_packages
-import os
-
-# Function to read the __version__ variable from HSR/version.py
-def read_version():
-    version_file = os.path.join(os.path.dirname(__file__), 'hsr', 'version.py')
-    namespace = {}
-    with open(version_file, 'r', encoding='utf-8') as f:
-        exec(f.read(), namespace)
-    return namespace['__version__']
-
-# Use the read_version function to get the version
-__version__ = read_version()
-
-with open(os.path.join(os.path.dirname(__file__), 'README.md'), encoding='utf-8') as readme_file:
-    long_description = readme_file.read()
 
 setup(
     name="hsr",
-    version=__version__,
+    use_scm_version=True,
+    setup_requires=["setuptools>=45", "setuptools_scm>=6.0.1"],
     author="Marcello Costamagna", 
     license="AGPL-3.0",
     description="Hypershape recognition (HSR): a general framework for moment-based similarity measures",
-    long_description=long_description,
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type='text/markdown',
     packages=find_packages(exclude=["tests", "tests.*"]),
     install_requires=[
